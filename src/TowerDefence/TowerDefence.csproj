@@ -219,7 +219,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Map.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Res\Levels\level0.xml" />
