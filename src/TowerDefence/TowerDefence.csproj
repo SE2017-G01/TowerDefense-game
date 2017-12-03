@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -219,7 +221,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Framework\ObjectPool\IReusable.cs" />
+    <Compile Include="Assets\Scripts\Framework\ObjectPool\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Framework\ObjectPool\ReusableObject.cs" />
+    <Compile Include="Assets\Scripts\Framework\ObjectPool\SubPool.cs" />
+    <Compile Include="Assets\Scripts\Framework\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Level\Level.cs" />
+    <Compile Include="Assets\Scripts\Map.cs" />
+    <Compile Include="Assets\Scripts\Monster\CoomonMonster.cs" />
+    <Compile Include="Assets\Scripts\Monster\IMonster.cs" />
+    <Compile Include="Assets\Scripts\Monster\SillyMonster.cs" />
     <Compile Include="Assets\Scripts\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\MResources.cs" />
+    <Compile Include="Assets\Scripts\Round.cs" />
+    <Compile Include="Assets\Scripts\Surrounding\CommonSurrounding.cs" />
+    <Compile Include="Assets\Scripts\Surrounding\Lock.cs" />
+    <Compile Include="Assets\Scripts\Tools.cs" />
+    <Compile Include="Assets\Scripts\Util\Point.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Res\Levels\level0.xml" />
