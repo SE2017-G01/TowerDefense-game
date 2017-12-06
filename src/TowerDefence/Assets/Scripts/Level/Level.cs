@@ -14,8 +14,12 @@ public class Level
     //金币
     public int InitScore;
 
+    //障碍物的位置
+    public List<Point> SurroundingPoint = new List<Point>();
+    public Dictionary<Point, string> Surroundings = new Dictionary<Point, string>();
+
     //炮塔可放置的位置
-    public List<Point> Holder = new List<Point>();
+    public List<Point> Holders = new List<Point>();
 
     //怪物行走的路径
     public List<Point> Path = new List<Point>();

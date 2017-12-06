@@ -5,17 +5,15 @@ using UnityEngine;
 
 public class ObjectPool : Singleton<ObjectPool>
 {
-    public string ResourceDir = "";
-
-    Dictionary<string, SubPool> m_pools = new Dictionary<string, SubPool>();
+    readonly Dictionary<string, SubPool> _mPools = new Dictionary<string, SubPool>();
 
 
     //取对象
     public GameObject Spawn(string name)
     {
-        if (!m_pools.ContainsKey(name))
-            RegisterNew(name);
-        SubPool pool = m_pools[name];
+        if (!_mPools.ContainsKey(name))
+            RegisterPool(name, 1);
+        SubPool pool = _mPools[name];
         return pool.Spawn();
     }
 
@@ -24,7 +22,7 @@ public class ObjectPool : Singleton<ObjectPool>
     {
         SubPool pool = null;
 
-        foreach (SubPool p in m_pools.Values)
+        foreach (SubPool p in _mPools.Values)
         {
             if (p.Contains(go))
             {
@@ -39,25 +37,20 @@ public class ObjectPool : Singleton<ObjectPool>
     //回收所有对象
     public void UnspawnAll()
     {
-        foreach (SubPool p in m_pools.Values)
+        foreach (SubPool p in _mPools.Values)
             p.UnspawnAll();
     }
 
-    //创建新子池子
-    void RegisterNew(string name)
+    //创建新子池
+    public void RegisterPool(string objname, int number)
     {
-        //预设路径
-        string path = "";
-        if (string.IsNullOrEmpty(ResourceDir.Trim()))
-            path = name;
-        else
-            path = ResourceDir + "/" + name;
-
+        if(_mPools.ContainsKey(objname))   return;
         //加载预设
-        GameObject prefab = Resources.Load<GameObject>(path);
+        var prefab = Resources.Load<GameObject>(MResources.ResourceDir + objname);
 
         //创建子对象池
-        SubPool pool = new SubPool(prefab);
-        m_pools.Add(pool.Name, pool);
+        var pool = new SubPool(prefab);
+        pool.AddObject(number);
+        _mPools.Add(pool.Name, pool);
     }
 }
