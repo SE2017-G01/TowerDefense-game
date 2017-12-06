@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
-public abstract class Singleton<T> : MonoBehaviour
-    where T : MonoBehaviour
+public class Singleton<T> : MonoBehaviour
+    where T : Component
 {
-    private static T m_instance = null;
-
+    private static T _instance;
     public static T Instance
     {
-        get { return m_instance; }
-    }
+        get
+        {
+            if (_instance != null) return _instance;
 
-    protected virtual void Awake()
-    {
-        m_instance = this as T;
+            _instance = FindObjectOfType(typeof(T)) as T;
+            if (_instance != null) return _instance;
+
+            var obj = new GameObject {hideFlags = HideFlags.HideAndDontSave};
+            obj.AddComponent<T>();
+            _instance = obj.GetComponent<T>();
+            return _instance;
+        }
     }
 }

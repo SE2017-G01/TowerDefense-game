@@ -10,14 +10,14 @@ public class Map : MonoBehaviour
     public int RowCount = 5;   //行数
     public int ColumnCount = 10; //列数
 
-    float MapWidth;//地图宽
-    float MapHeight;//地图高
+    float _mapWidth;//地图宽
+    float _mapHeight;//地图高
 
-    float TileWidth;//格子宽
-    float TileHeight;//格子高
+    float _tileWidth;//格子宽
+    float _tileHeight;//格子高
 
-    List<Point> m_grid = new List<Point>(); //格子集合
-    List<Point> m_road = new List<Point>(); //路径集合
+    List<Point> _mGrid = new List<Point>(); //格子集合
+    List<Point> _mRoad = new List<Point>(); //路径集合
 
     //Level m_level; //关卡数据
 
@@ -34,14 +34,13 @@ public class Map : MonoBehaviour
         CalculateSize();
 
         //创建所有的格子
-        for (int i = 0; i < RowCount; i++)
-            for (int j = 0; j < ColumnCount; j++)
-                m_grid.Add(new Point(j, i));
+        for (var i = 0; i < RowCount; i++)
+            for (var j = 0; j < ColumnCount; j++)
+                _mGrid.Add(new Point(j, i));
 
         Debug.Log("hello,world!");
-        //GameObject cubeObject = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
-
-        //监听鼠标点击事件
+        var level = LevelLoader.LoadLevel("level0");
+        SurroundingFactory.Instance.LoadSurroundings(level);
     }
 
     void Update()
@@ -63,16 +62,16 @@ public class Map : MonoBehaviour
         //绘制行
         for (int row = 0; row <= RowCount; row++)
         {
-            Vector2 from = new Vector2(-MapWidth / 2, -MapHeight / 2 + row * TileHeight);
-            Vector2 to = new Vector2(-MapWidth / 2 + MapWidth, -MapHeight / 2 + row * TileHeight);
+            Vector2 from = new Vector2(-_mapWidth / 2, -_mapHeight / 2 + row * _tileHeight);
+            Vector2 to = new Vector2(-_mapWidth / 2 + _mapWidth, -_mapHeight / 2 + row * _tileHeight);
             Gizmos.DrawLine(from, to);
         }
 
         //绘制列
         for (int col = 0; col <= ColumnCount; col++)
         {
-            Vector2 from = new Vector2(-MapWidth / 2 + col * TileWidth, MapHeight / 2);
-            Vector2 to = new Vector2(-MapWidth / 2 + col * TileWidth, -MapHeight / 2);
+            Vector2 from = new Vector2(-_mapWidth / 2 + col * _tileWidth, _mapHeight / 2);
+            Vector2 to = new Vector2(-_mapWidth / 2 + col * _tileWidth, -_mapHeight / 2);
             Gizmos.DrawLine(from, to);
         }
     }
@@ -84,19 +83,16 @@ public class Map : MonoBehaviour
     //计算地图大小，格子大小
     void CalculateSize()
     {
-        //Vector3 leftDown = new Vector3(0, 0);
-        //Vector3 rightUp = new Vector3(1, 1);
-        //Vector3 p1 = Camera.main.ViewportToWorldPoint(leftDown);
-        //Vector3 p2 = Camera.main.ViewportToWorldPoint(rightUp);
-        //MapWidth = (p2.x - p1.x);
-        //MapHeight = (p2.y - p1.y);
+        _mapHeight = GetComponent<Renderer>().bounds.size.y;//高度。
+        _mapWidth = GetComponent<Renderer>().bounds.size.x;//宽度。
 
-        MapHeight = GetComponent<Renderer>().bounds.size.y;//高度。
-        MapWidth = GetComponent<Renderer>().bounds.size.x;//宽度。
+        _tileWidth = _mapWidth / ColumnCount;
+        _tileHeight = _mapHeight / RowCount;
 
-        TileWidth = MapWidth / ColumnCount;
-        TileHeight = MapHeight / RowCount;
+        Game.Instance.MapHeight = _mapHeight;
+        Game.Instance.MapWidth = _mapWidth;
+        Game.Instance.TileHeight = _tileHeight;
+        Game.Instance.TileWidth = _tileWidth;
     }
-
     #endregion
 }
