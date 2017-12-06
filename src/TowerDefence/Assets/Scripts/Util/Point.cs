@@ -6,22 +6,28 @@ public class Point
 {
     public int X;
     public int Y;
-    public int type; //是否可以放置塔
+    public int Type;
 
     public Point(int x, int y)
     {
         this.X = x;
         this.Y = y;
-        this.type = MResources.POINT_TYPE_PLATE;
+        this.Type = MResources.PointTypePlate;
+    }
+    public Point(int x, int y, int type)
+    {
+        this.X = x;
+        this.Y = y;
+        this.Type = type;
     }
 
     public override string ToString()
     {
-        string typestr = type == MResources.POINT_TYPE_PLATE
+        string typestr = Type == MResources.PointTypePlate
             ? "Plate"
-            : type == MResources.POINT_TYPE_SURROUNDING
+            : Type == MResources.PointTypeSurrounding
                 ? "Surroundings"
-                : type == MResources.POINT_TYPE_TOWER
+                : Type == MResources.PointTypeTower
                     ? "Tower"
                     : "Unknown";
         return string.Format("[X:{0},Y:{1},Type:{2}]",
@@ -29,5 +35,14 @@ public class Point
             this.Y,
             typestr
         );
+    }
+
+    public static Vector3 Point2Vector3(Point point)
+    {
+        var tileWidth = Game.Instance.TileWidth;
+        var tileHeight = Game.Instance.TileHeight;
+        var result = new Vector3(-4.5f * tileWidth + point.X * tileWidth,
+            2 * tileHeight - point.Y * tileHeight, 0);
+        return result;
     }
 }

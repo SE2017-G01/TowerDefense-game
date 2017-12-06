@@ -2,26 +2,38 @@
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public class SubPool
 {
     //预设
-    GameObject m_prefab;
+    private readonly GameObject _mPrefab;
 
     //集合
-    List<GameObject> m_objects = new List<GameObject>();
+    private readonly List<GameObject> _mObjects = new List<GameObject>();
 
 
     //名字标识
     public string Name
     {
-        get { return m_prefab.name; }
+        get { return _mPrefab.name; }
     }
 
     //构造
     public SubPool(GameObject prefab)
     {
-        this.m_prefab = prefab;
+        this._mPrefab = prefab;
+    }
+
+    //加对象
+    public void AddObject(int number)
+    {
+        for (var i = 0; i < number; i++)
+        {
+            var ob = Object.Instantiate<GameObject>(_mPrefab);
+            ob.SetActive(false);
+            _mObjects.Add(ob);
+        }
     }
 
     //取对象
@@ -29,19 +41,17 @@ public class SubPool
     {
         GameObject go = null;
 
-        foreach (GameObject obj in m_objects)
+        foreach (var obj in _mObjects)
         {
-            if (!obj.activeSelf)
-            {
-                go = obj;
-                break;
-            }
+            if (obj.activeSelf) continue;
+            go = obj;
+            break;
         }
 
         if (go == null)
         {
-            go = GameObject.Instantiate<GameObject>(m_prefab);
-            m_objects.Add(go);
+            go = Object.Instantiate<GameObject>(_mPrefab);
+            _mObjects.Add(go);
         }
 
         go.SetActive(true);
@@ -52,17 +62,15 @@ public class SubPool
     //回收对象
     public void Unspawn(GameObject go)
     {
-        if (Contains(go))
-        {
-            go.SendMessage("OnUnspawn", SendMessageOptions.DontRequireReceiver);
-            go.SetActive(false);
-        }
+        if (!Contains(go)) return;
+        go.SendMessage("OnUnspawn", SendMessageOptions.DontRequireReceiver);
+        go.SetActive(false);
     }
 
     //回收该池子的所有对象
     public void UnspawnAll()
     {
-        foreach (GameObject item in m_objects)
+        foreach (var item in _mObjects)
         {
             if (item.activeSelf)
             {
@@ -74,6 +82,6 @@ public class SubPool
     //是否包含对象
     public bool Contains(GameObject go)
     {
-        return m_objects.Contains(go);
+        return _mObjects.Contains(go);
     }
 }
