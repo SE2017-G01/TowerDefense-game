@@ -51,9 +51,9 @@
 <Point X="9" Y="5"/>
 <Point X="4" Y="5"/>
 </Path>
-<Rounds>
-<Round Monster="0" Count="10"/>
-<Round Monster="0" Count="10"/>
-<Round Monster="0" Count="10"/>
-</Rounds>
+<MRounds>
+<MRound Monster="0" Count="10"/>
+<MRound Monster="0" Count="10"/>
+<MRound Monster="0" Count="10"/>
+</MRounds>
 </Level>

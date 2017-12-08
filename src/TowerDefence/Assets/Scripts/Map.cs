@@ -41,6 +41,8 @@ public class Map : MonoBehaviour
         Debug.Log("hello,world!");
         var level = LevelLoader.LoadLevel("level0");
         SurroundingFactory.Instance.LoadSurroundings(level);
+        MonsterFactory.Instance.LoadMonsters(level);
+        MonsterFactory.Instance.Spawn("Silly");
     }
 
     void Update()
@@ -58,7 +60,6 @@ public class Map : MonoBehaviour
 
         //绘制格子
         Gizmos.color = Color.green;
-
         //绘制行
         for (int row = 0; row <= RowCount; row++)
         {
@@ -66,12 +67,19 @@ public class Map : MonoBehaviour
             Vector2 to = new Vector2(-_mapWidth / 2 + _mapWidth, -_mapHeight / 2 + row * _tileHeight);
             Gizmos.DrawLine(from, to);
         }
-
         //绘制列
         for (int col = 0; col <= ColumnCount; col++)
         {
             Vector2 from = new Vector2(-_mapWidth / 2 + col * _tileWidth, _mapHeight / 2);
             Vector2 to = new Vector2(-_mapWidth / 2 + col * _tileWidth, -_mapHeight / 2);
+            Gizmos.DrawLine(from, to);
+        }
+
+        //绘制怪兽前进路线
+        for (int row = 0; row <= RowCount; row++)
+        {
+            Vector2 from = new Vector2(-_mapWidth / 2, -_mapHeight / 2 + row * _tileHeight);
+            Vector2 to = new Vector2(-_mapWidth / 2 + _mapWidth, -_mapHeight / 2 + row * _tileHeight);
             Gizmos.DrawLine(from, to);
         }
     }
