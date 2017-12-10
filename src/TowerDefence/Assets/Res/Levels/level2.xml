@@ -21,12 +21,12 @@
 <Point X="10" Y="2"/>
 <Point X="10" Y="5"/>
 </Path>
-<Rounds>
-<Round Monster="0" Count="5"/>
-<Round Monster="1" Count="8"/>
-<Round Monster="2" Count="8"/>
-<Round Monster="3" Count="10"/>
-<Round Monster="4" Count="10"/>
-<Round Monster="5" Count="1"/>
-</Rounds>
+<MRounds>
+<MRound Monster="0" Count="5"/>
+<MRound Monster="1" Count="8"/>
+<MRound Monster="2" Count="8"/>
+<MRound Monster="3" Count="10"/>
+<MRound Monster="4" Count="10"/>
+<MRound Monster="5" Count="1"/>
+</MRounds>
 </Level>

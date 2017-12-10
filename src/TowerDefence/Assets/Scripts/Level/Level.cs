@@ -5,14 +5,10 @@ using System.Collections.Generic;
 public class Level
 {
     #region 字段
-    //名字
-    public string Name;
-
-    //路径
-    public string Road;
-
-    //金币
-    public int InitScore;
+    public string Name;//名字
+    public string Road;//路径
+    public int InitScore;//金币
+    public float MonsterGap;//怪兽间距 
 
     //障碍物的位置
     public List<Point> SurroundingPoint = new List<Point>();
@@ -25,7 +21,7 @@ public class Level
     public List<Point> Path = new List<Point>();
 
     //出怪回合信息
-    public List<Round> Rounds = new List<Round>();
+    public List<KeyValuePair<string, int>> Rounds = new List<KeyValuePair<string, int>>();
     #endregion
 
 }

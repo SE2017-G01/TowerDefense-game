@@ -60,12 +60,12 @@
 //            level.Path.Add(p);
 //        }
 
-//        nodes = doc.SelectNodes("/Level/Rounds/Round");
+//        nodes = doc.SelectNodes("/Level/Rounds/MRound");
 //        for (int i = 0; i < nodes.Count; i++)
 //        {
 //            XmlNode node = nodes[i];
 
-//            Round r = new Round(
+//            MRound r = new MRound(
 //                    int.Parse(node.Attributes["Monster"].Value),
 //                    int.Parse(node.Attributes["Count"].Value)
 //                );
@@ -106,7 +106,7 @@
 //        sb.AppendLine("<Rounds>");
 //        for (int i = 0; i < level.Rounds.Count; i++)
 //        {
-//            sb.AppendLine(string.Format("<Round Monster=\"{0}\" Count=\"{1}\"/>", level.Rounds[i].Monster, level.Rounds[i].Count));
+//            sb.AppendLine(string.Format("<MRound Monster=\"{0}\" Count=\"{1}\"/>", level.Rounds[i].Monster, level.Rounds[i].Count));
 //        }
 //        sb.AppendLine("</Rounds>");
 

@@ -47,9 +47,12 @@ TagManager:
   - name: Map
     uniqueID: 561176279
     locked: 0
-  - name: Entity
+  - name: Air
     uniqueID: 869410571
     locked: 0
-  - name: Effect
+  - name: Entity
     uniqueID: 3741786471
+    locked: 0
+  - name: Effect
+    uniqueID: 2137922779
     locked: 0

@@ -25,7 +25,7 @@ public class LevelLoader
     public static Level LoadLevel(string fileName)
     {
         var level = new Level();
-        FileInfo file = new FileInfo(Directory.GetFiles(MResources.LevelDir, fileName+".xml")[0]);
+        FileInfo file = new FileInfo(Directory.GetFiles(MResources.LevelDir, fileName + ".xml")[0]);
         StreamReader sr = new StreamReader(file.OpenRead(), Encoding.UTF8);
 
         XmlDocument doc = new XmlDocument();
@@ -34,8 +34,9 @@ public class LevelLoader
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
         level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
+        level.MonsterGap = float.Parse(doc.SelectSingleNode("/Level/MonsterGap").InnerText);
 
-        //关卡字典
+        #region 读取关卡字典
         var dicNodes = doc.SelectNodes("/Level/Dictionary/Item");
         var dictionary = new Dictionary<string, string>();
         for (var i = 0; i < dicNodes.Count; i++)
@@ -44,9 +45,14 @@ public class LevelLoader
             if (item.Attributes == null) continue;
             dictionary.Add(item.Attributes["name"].Value, item.Attributes["entity"].Value);
         }
+        #endregion
 
-        //读取障碍物
-        string[] surrounding = doc.SelectSingleNode("/Level/Holder").InnerText.Split(',');
+        #region 读取障碍物
+
+        string surroundingStr = doc.SelectSingleNode("/Level/Holder").InnerText;
+        surroundingStr = surroundingStr.Replace("\r\n", "");
+        surroundingStr = surroundingStr.Replace(" ", "");
+        string[] surrounding = surroundingStr.Split(',');
         int x = 0, y = 0;
         foreach (var s in surrounding)
         {
@@ -58,10 +64,14 @@ public class LevelLoader
                         level.Holders.Add(new Point(x, y));
                         break;
                     case MResources.Start:
+                        Game.Instance.StartPoint = new Point(x, y);
                         break;
                     case MResources.End:
+                        Game.Instance.EndPoint = new Point(x, y);
                         break;
-                    case "\r": case "\n": case "\n\r":
+                    case "\r":
+                    case "\n":
+                    case "\n\r":
                         break;
                     default:
                         var p = new Point(x, y, MResources.PointTypeSurrounding);
@@ -81,42 +91,21 @@ public class LevelLoader
                 x++;
             }
         }
+        #endregion
 
-        //var nodes = doc.SelectNodes("/Level/Holder/Point");
-        //for (int i = 0; i < nodes.Count; i++)
-        //{
-        //    XmlNode node = nodes[i];
-        //    Point p = new Point(
-        //        int.Parse(node.Attributes["X"].Value),
-        //        int.Parse(node.Attributes["Y"].Value));
+        #region 读取回合信息
+        var roundNodes = doc.SelectNodes("/Level/Rounds/Round");
+        if (roundNodes != null)
+            for (var i = 0; i < roundNodes.Count; i++)
+            {
+                var node = roundNodes[i];
+                if (node.Attributes == null) continue;
+                var monster = node.Attributes["Monster"].Value;
+                var number = int.Parse(node.Attributes["Count"].Value);
+                level.Rounds.Add(new KeyValuePair<string, int>(monster, number));
+            }
 
-        //    level.Holders.Add(p);
-        //}
-
-        //nodes = doc.SelectNodes("/Level/Path/Point");
-        //for (int i = 0; i < nodes.Count; i++)
-        //{
-        //    XmlNode node = nodes[i];
-
-        //    Point p = new Point(
-        //        int.Parse(node.Attributes["X"].Value),
-        //        int.Parse(node.Attributes["Y"].Value));
-
-        //    level.Path.Add(p);
-        //}
-
-        //nodes = doc.SelectNodes("/Level/Rounds/Round");
-        //for (int i = 0; i < nodes.Count; i++)
-        //{
-        //    XmlNode node = nodes[i];
-
-        //    Round r = new Round(
-        //            int.Parse(node.Attributes["Monster"].Value),
-        //            int.Parse(node.Attributes["Count"].Value)
-        //        );
-
-        //    level.Rounds.Add(r);
-        //}
+        #endregion
 
         sr.Close();
         sr.Dispose();
@@ -153,7 +142,7 @@ public class LevelLoader
     //    sb.AppendLine("<Rounds>");
     //    for (int i = 0; i < level.Rounds.Count; i++)
     //    {
-    //        sb.AppendLine(string.Format("<Round Monster=\"{0}\" Count=\"{1}\"/>", level.Rounds[i].Monster, level.Rounds[i].Count));
+    //        sb.AppendLine(string.Format("<MRound Monster=\"{0}\" Count=\"{1}\"/>", level.Rounds[i].Monster, level.Rounds[i].Count));
     //    }
     //    sb.AppendLine("</Rounds>");
 

@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 //用于描述一个关卡地图的状态
-public class Map : MonoBehaviour
+public class Map : Singleton<Map>
 {
     #region 字段
     public int RowCount = 5;   //行数
@@ -19,7 +19,7 @@ public class Map : MonoBehaviour
     List<Point> _mGrid = new List<Point>(); //格子集合
     List<Point> _mRoad = new List<Point>(); //路径集合
 
-    //Level m_level; //关卡数据
+    public Level CurrentLevel; //当前关卡
 
     public bool DrawGizmos = true; //是否绘制网格
     #endregion
@@ -39,8 +39,10 @@ public class Map : MonoBehaviour
                 _mGrid.Add(new Point(j, i));
 
         Debug.Log("hello,world!");
-        var level = LevelLoader.LoadLevel("level0");
-        SurroundingFactory.Instance.LoadSurroundings(level);
+        CurrentLevel = LevelLoader.LoadLevel("level0");
+        SurroundingFactory.Instance.LoadSurroundings(CurrentLevel);
+        MonsterFactory.Instance.LoadMonsters(CurrentLevel);
+        MonsterFactory.Instance.Spawn("Silly");
     }
 
     void Update()
@@ -58,7 +60,6 @@ public class Map : MonoBehaviour
 
         //绘制格子
         Gizmos.color = Color.green;
-
         //绘制行
         for (int row = 0; row <= RowCount; row++)
         {
@@ -66,7 +67,6 @@ public class Map : MonoBehaviour
             Vector2 to = new Vector2(-_mapWidth / 2 + _mapWidth, -_mapHeight / 2 + row * _tileHeight);
             Gizmos.DrawLine(from, to);
         }
-
         //绘制列
         for (int col = 0; col <= ColumnCount; col++)
         {
@@ -74,6 +74,8 @@ public class Map : MonoBehaviour
             Vector2 to = new Vector2(-_mapWidth / 2 + col * _tileWidth, -_mapHeight / 2);
             Gizmos.DrawLine(from, to);
         }
+
+        //绘制怪兽前进路线
     }
 
     #endregion
