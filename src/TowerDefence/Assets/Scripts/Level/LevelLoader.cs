@@ -34,6 +34,7 @@ public class LevelLoader
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
         level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
+        level.MonsterGap = float.Parse(doc.SelectSingleNode("/Level/MonsterGap").InnerText);
 
         #region 读取关卡字典
         var dicNodes = doc.SelectNodes("/Level/Dictionary/Item");

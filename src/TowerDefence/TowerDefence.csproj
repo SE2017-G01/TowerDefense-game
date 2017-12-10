@@ -223,6 +223,7 @@
     <Compile Include="Assets\Scripts\Entity\Monster\CommonMonster.cs" />
     <Compile Include="Assets\Scripts\Entity\Monster\MonsterFactory.cs" />
     <Compile Include="Assets\Scripts\Entity\Monster\Silly.cs" />
+    <Compile Include="Assets\Scripts\Entity\Portal\CommonPortal.cs" />
     <Compile Include="Assets\Scripts\Entity\Surrounding\CommonSurrounding.cs" />
     <Compile Include="Assets\Scripts\Entity\Surrounding\Lock.cs" />
     <Compile Include="Assets\Scripts\Entity\Surrounding\SurroundingFactory.cs" />
