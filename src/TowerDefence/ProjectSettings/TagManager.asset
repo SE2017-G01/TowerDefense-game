@@ -41,3 +41,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 1389692091
+    locked: 0
+  - name: Map
+    uniqueID: 561176279
+    locked: 0
+  - name: Entity
+    uniqueID: 869410571
+    locked: 0
+  - name: Effect
+    uniqueID: 3741786471
+    locked: 0
