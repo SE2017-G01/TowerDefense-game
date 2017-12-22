@@ -18,7 +18,7 @@ public class Map : Singleton<Map>
 
     List<Point> _mGrid = new List<Point>(); //格子集合
     List<Point> _mRoad = new List<Point>(); //路径集合
-
+    
     public Level CurrentLevel; //当前关卡
 
     public bool DrawGizmos = true; //是否绘制网格

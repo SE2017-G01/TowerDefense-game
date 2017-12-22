@@ -5,11 +5,13 @@ using System.Text;
 
 public class Round
 {
-    public int Monster; //怪物类型ID
-    public int Count;   //怪物数量
+    private int id = -1;
+    private string Monster; //怪物类型ID
+    private int Count;   //怪物数量
 
-    public Round(int monster, int count)
+    public Round(int id, string monster, int count)
     {
+        this.id = id;
         this.Monster = monster;
         this.Count = count;
     }

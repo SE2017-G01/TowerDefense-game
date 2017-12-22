@@ -21,7 +21,8 @@ public class Level
     public List<Point> Path = new List<Point>();
 
     //出怪回合信息
-    public List<KeyValuePair<string, int>> Rounds = new List<KeyValuePair<string, int>>();
+    //public List<KeyValuePair<string, int>> Rounds = new List<KeyValuePair<string, int>>();
+    public List<Round> Rounds = new List<Round>();
     #endregion
 
 }

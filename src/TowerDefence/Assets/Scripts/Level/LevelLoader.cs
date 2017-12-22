@@ -30,7 +30,7 @@ public class LevelLoader
 
         XmlDocument doc = new XmlDocument();
         doc.Load(sr);
-
+        
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
         level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
@@ -102,7 +102,8 @@ public class LevelLoader
                 if (node.Attributes == null) continue;
                 var monster = node.Attributes["Monster"].Value;
                 var number = int.Parse(node.Attributes["Count"].Value);
-                level.Rounds.Add(new KeyValuePair<string, int>(monster, number));
+                var round = new Round(i + 1, monster, number);
+                level.Rounds.Add(round);
             }
 
         #endregion
