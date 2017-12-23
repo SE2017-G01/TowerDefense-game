@@ -72,7 +72,7 @@ public class Monster : Role
         {
             //刚刚出来，那就放置到起点位置
             m_PointIndex = 0;
-            MoveTo(m_Path[m_PointIndex]);
+            MoveTo(Spawner.m_Map.GetPosition(Spawner.m_Map.start));
         }
         else
         {
@@ -102,7 +102,7 @@ public class Monster : Role
                     MX = e;
             }
         }
-        if (MX.distance>99) throw new IndexOutOfRangeException("没有合法格子");
+        //if (MX.distance>99) throw new IndexOutOfRangeException("没有合法格子");
         return MX;
     }
     void Update()
@@ -118,9 +118,19 @@ public class Monster : Role
         //Vector3 dest = m_Path[m_PointIndex + 1];
         Map nmap=new Map();
         Tile now = nmap.GetTile(pos);
+
         if (m_PointIndex==0)
             Next= nmap.GetPosition(Getbest(now));
-        
+        if ((now.X == Spawner.m_Map.lastx) && (now.Y == Spawner.m_Map.lasty))
+            //到达终点
+        {
+            m_IsReached = true;
+
+            //触发到达终点事件
+            if (Reached != null)
+                Reached(this);
+            return;
+        }
         //计算距离
         float dis = Vector3.Distance(pos, Next);
         if (dis <= CLOSED_DISTANCE)
@@ -128,19 +138,9 @@ public class Monster : Role
             //到达拐点
             MoveTo(Next);
             Next = nmap.GetPosition(Getbest(now));
-            if (nmap.GetTile(Next)==now) throw new IndexOutOfRangeException("???");
-            /* if (HasNext())
-                 MoveNext();
-             else
-             {
-                 //到达终点
-                 m_IsReached = true;
-
-                 //触发到达终点事件
-                 if (Reached != null)
-                     Reached(this);
-             }*/
-        }
+            if (nmap.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
+           
+    }
         else
         {
             //移动的单位方向

@@ -20,10 +20,8 @@ public class TileClickEventArgs : EventArgs
 public class Map : MonoBehaviour
 {
     #region 常量
-    public const int RowCount 		= 8;  //行数
-    public const int ColumnCount 	= 12; //列数
-    public const int MAXX = 10;
-    public const int MAXY = 5;
+    public const int MAXX 	= 11; 
+    public const int MAXY 	= 6; 
     private int[,] dir = new int[,]
     {
         {-1, 0}, {0, 1}, {1, 0}, {0, -1}
@@ -37,7 +35,9 @@ public class Map : MonoBehaviour
     #region 字段
     float MapWidth;//地图宽
     float MapHeight;//地图高
-
+    public int lastx, lasty,startx,starty;
+    public Tile last=new Tile(0,0);
+    public Tile start=new Tile(0,0);
     float TileWidth;//格子宽
     float TileHeight;//格子高
 
@@ -125,22 +125,28 @@ public class Map : MonoBehaviour
             Tile t = GetTile(p.X, p.Y);
             m_road.Add(t);
         }
-
+        //起点和终点的加载
+        lastx = 10;
+        lasty = 4;
+        startx = 0;
+        starty = 4;
+        start.X = startx;
+        start.Y = starty;
+        last.X = lastx;
+        last.Y = lasty;
         //炮塔点
-        /*for (int i = 0; i < level.Holder.Count; i++)
-        {
-            Point p = level.Holder[i];
-            Tile t = GetTile(p.X, p.Y);
-            t.CanHold = true;
-        }*/
-        //全图都可放炮塔，除了障碍点和两个特殊点
-        for (int x=0;x<=MAXX;x++)
-        for (int y = 0; y <= MAXY; y++)
+        for (int x=0;x<MAXX;x++)
+        for (int y = 0; y < MAXY-1; y++)//最上面一行不放
         {
             Tile t = GetTile(x, y);
             t.CanHold = true;
             t.distance = 999;
+            t.Data = null;
         }
+        GetTile(lastx, lasty).CanHold = false;
+        GetTile(startx, starty).CanHold = false;
+
+
         CalcShortPath();
     }
 
@@ -149,8 +155,8 @@ public class Map : MonoBehaviour
     {
         foreach (Tile t in m_grid)
         {
-            if(t.CanHold)
-                t.CanHold = false;
+            t.Data = null;
+            t.CanHold = false;
         }
     }
 
@@ -178,8 +184,8 @@ public class Map : MonoBehaviour
         CalculateSize();
 
         //创建所有的格子
-        for (int i = 0; i < RowCount; i++)
-            for (int j = 0; j < ColumnCount; j++)
+        for (int i = 0; i < MAXY; i++)
+            for (int j = 0; j < MAXX; j++)
                 m_grid.Add(new Tile(j, i));
 
         //监听鼠标点击事件
@@ -228,7 +234,7 @@ public class Map : MonoBehaviour
         Gizmos.color = Color.green;
 
         //绘制行
-        for (int row = 0; row <= RowCount; row++)
+        for (int row = 0; row < MAXX; row++)
         {
             Vector2 from = new Vector2(-MapWidth / 2, -MapHeight / 2 + row * TileHeight);
             Vector2 to = new Vector2(-MapWidth / 2 + MapWidth, -MapHeight / 2 + row * TileHeight);
@@ -236,7 +242,7 @@ public class Map : MonoBehaviour
         }
 
         //绘制列
-        for (int col = 0; col <= ColumnCount; col++)
+        for (int col = 0; col < MAXY; col++)
         {
             Vector2 from = new Vector2(-MapWidth / 2 + col * TileWidth, MapHeight / 2);
             Vector2 to = new Vector2(-MapWidth / 2 + col * TileWidth, -MapHeight / 2);
@@ -290,7 +296,7 @@ public class Map : MonoBehaviour
             return;
 
         //处理放塔操作
-        /*if (e.MouseButton == 0 && !m_road.Contains(e.Tile))
+        if (e.MouseButton == 0 && !m_road.Contains(e.Tile))
         {
             e.Tile.CanHold = !e.Tile.CanHold;
         }
@@ -302,15 +308,15 @@ public class Map : MonoBehaviour
                 m_road.Remove(e.Tile);
             else
                 m_road.Add(e.Tile);
-        }*/
+        }
         CalcShortPath();
     }
 
-    public void CalcShortPath()
+    public Boolean CalcShortPath()
     {
         //Queue<Tile> g;
-        for (int x = 0; x <= MAXX; x++)
-        for (int y = 0; y <= MAXY; y++)
+        for (int x = 0; x < MAXX; x++)
+        for (int y = 0; y < MAXY; y++)
         {
             GetTile(x, y).distance = 100;
         }
@@ -318,9 +324,7 @@ public class Map : MonoBehaviour
         Tile[] g = new Tile[100];
         int l = 0;
         int r = 1;
-        int startx = 10;
-        int starty = 5;
-        g[1] = GetTile(startx,starty);
+        g[1] = GetTile(lastx,lasty);
         g[1].distance = 0;
         while (l < r)
         {
@@ -331,7 +335,7 @@ public class Map : MonoBehaviour
             {
                 int xx = x + dir[k,0];
                 int yy = y + dir[k,1];
-                if ((xx>=0)&&(xx<=MAXX)&&(yy>=0)&&(yy<=MAXY))
+                if ((xx>=0)&&(xx<MAXX)&&(yy>=0)&&(yy<MAXY-1))//最上面一行不走
                 {
                     Tile e = GetTile(xx, yy);
                     if (e.Data==null)
@@ -343,6 +347,8 @@ public class Map : MonoBehaviour
                 }
             }
         }
+        if (GetTile(startx,starty).distance>=100) return false;
+        else return true;
     }
 
     #endregion
@@ -360,8 +366,8 @@ public class Map : MonoBehaviour
         MapWidth = Math.Abs(p2.x - p1.x);
         MapHeight = Math.Abs(p2.y - p1.y);
 
-        TileWidth = MapWidth / ColumnCount;
-        TileHeight = MapHeight / RowCount;
+        TileWidth = MapWidth / MAXX;
+        TileHeight = MapHeight / MAXY;
     }
 
     //获取格子中心点所在的世界坐标
@@ -378,7 +384,7 @@ public class Map : MonoBehaviour
     //根据格子索引号获得格子
     public Tile GetTile(int tileX, int tileY)
     {
-        int index = tileX + tileY * ColumnCount;
+        int index = tileX + tileY * MAXX;
         if (index < 0 || index >= m_grid.Count)
             //throw new IndexOutOfRangeException("格子索引越界");
             throw new IndexOutOfRangeException(tileX.ToString()+tileY.ToString());
