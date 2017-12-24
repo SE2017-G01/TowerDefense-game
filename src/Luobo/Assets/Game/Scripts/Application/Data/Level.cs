@@ -17,7 +17,7 @@ public class Level
     public string Road;
 
     //金币
-    public int InitScore;
+    public int InitGold;
 
     //炮塔可放置的位置
     public List<Point> Holder = new List<Point>();

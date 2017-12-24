@@ -50,6 +50,7 @@ public abstract class Bullet : ReusbleObject, IReusable
         BulletInfo info = Game.Instance.StaticData.GetBulletInfo(bulletID);
         this.BaseSpeed = info.BaseSpeed;
         this.BaseAttack = info.BaseAttack;
+        //this.price=info.
     }
 
     public void Explode()

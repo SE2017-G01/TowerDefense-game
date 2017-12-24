@@ -36,7 +36,7 @@ public class Tools
         level.CardImage = doc.SelectSingleNode("/Level/CardImage").InnerText;
         level.Background = doc.SelectSingleNode("/Level/Background").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
-        level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
+        level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
 
         XmlNodeList nodes;
 
@@ -91,7 +91,7 @@ public class Tools
         sb.AppendLine(string.Format("<CardImage>{0}</CardImage>", level.CardImage));
         sb.AppendLine(string.Format("<Background>{0}</Background>", level.Background));
         sb.AppendLine(string.Format("<Road>{0}</Road>", level.Road));
-        sb.AppendLine(string.Format("<InitScore>{0}</InitScore>", level.InitScore));
+        sb.AppendLine(string.Format("<InitScore>{0}</InitScore>", level.InitGold));
 
         sb.AppendLine("<Holder>");
         for (int i = 0; i < level.Holder.Count; i++)
