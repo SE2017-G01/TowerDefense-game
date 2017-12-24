@@ -20,5 +20,6 @@ class SellTowerCommand : Controller
 
         //回收
         Game.Instance.ObjectPool.Unspawn(e.tower.gameObject);
+        Spawner.m_Map.CalcShortPath();
     }
 }

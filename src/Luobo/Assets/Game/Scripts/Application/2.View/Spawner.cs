@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class Spawner : View
@@ -49,7 +50,13 @@ public class Spawner : View
     {
         //找到Tile
         Tile tile = m_Map.GetTile(position);
-
+        tile.Data=new Tile(0,0);
+        if (!m_Map.CalcShortPath())
+        {
+            tile.Data = null;
+            m_Map.CalcShortPath();
+            return; //提示这个位置不能造塔
+        }
         //创建Tower
         TowerInfo info = Game.Instance.StaticData.GetTowerInfo(towerID);
         GameObject go = Game.Instance.ObjectPool.Spawn(info.PrefabName);
@@ -130,7 +137,7 @@ public class Spawner : View
             ShowCreateArgs arg = new ShowCreateArgs()
             {
                 Position = m_Map.GetPosition(e.Tile),
-                UpSide = e.Tile.Y < Map.RowCount / 2
+                UpSide = e.Tile.Y < Map.MAXX / 2
             };
             SendEvent(Consts.E_ShowCreate, arg);
         }
@@ -173,8 +180,7 @@ public class Spawner : View
                     m_Map.LoadLevel(gModel.PlayLevel);
 
                     //加载萝卜
-                    Vector3[] path = m_Map.Path;
-                    Vector3 luoboPos = path[path.Length - 1];
+                    Vector3 luoboPos = m_Map.GetPosition(m_Map.GetTile(m_Map.lastx, m_Map.lasty));
                     SpawnLuobo(luoboPos);
                 }
                 break;
