@@ -29,12 +29,8 @@ public class Monster : Role
     Vector3[] m_Path = null; //路径拐点
     int m_PointIndex = -1; //当前拐点索引
     bool m_IsReached = false;//是否到达终点
-    float MapWidth;//地图宽
-    float MapHeight;//地图高
-    private Tile[] m_grid = new Tile[100];
-    float TileWidth;//格子宽
-    float TileHeight;//格子高
     private Vector3 Next ;
+    
     #endregion
 
     #region 属性
@@ -43,6 +39,11 @@ public class Monster : Role
         get { return m_MoveSpeed; }
         set { m_MoveSpeed = value; }
     }
+    /*public int Price
+    {
+        get { return m_price; }
+        set { m_price = value; }
+    }*/
     #endregion
 
     #region 方法
@@ -161,6 +162,7 @@ public class Monster : Role
         this.MaxHp = info.Hp;
         this.Hp = info.Hp;
         this.MoveSpeed = info.MoveSpeed;
+        this.Price = info.Price;
     }
 
     public override void OnUnspawn()
@@ -176,31 +178,6 @@ public class Monster : Role
     #endregion
 
     #region 帮助方法
-    //获取格子中心点所在的世界坐标
-    public Vector3 GetPosition(Tile t)
-    {
-        return new Vector3(
-            -MapWidth / 2 + (t.X + 0.5f) * TileWidth,
-            -MapHeight / 2 + (t.Y + 0.5f) * TileHeight,
-            0
-        );
-    }
-
-    //根据格子索引号获得格子
-    public Tile GetTile(int tileX, int tileY)
-    {
-        int index = tileX + tileY * ColumnCount;
-        if (index < 0 || index >= Map.m_grid.Count)
-            throw new IndexOutOfRangeException("格子索引越界");
-        return Map.m_grid[index];
-    }
-
-    //获取所在位置获得格子
-    public Tile GetTile(Vector3 position)
-    {
-        int tileX = (int)((position.x + MapWidth / 2) / TileWidth);
-        int tileY = (int)((position.y + MapHeight / 2) / TileHeight);
-        return GetTile(tileX, tileY);
-    }
+   
     #endregion
 }       
