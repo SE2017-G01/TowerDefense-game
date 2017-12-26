@@ -39,12 +39,8 @@ public class Tools
 
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
-<<<<<<< HEAD
-        level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
-        //level.MonsterGap = float.Parse(doc.SelectSingleNode("/Level/MonsterGap").InnerText);
-=======
+
         level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
->>>>>>> dev
 
         #region 读取关卡字典
         var dicNodes = doc.SelectNodes("/Level/Dictionary/Item");
@@ -85,8 +81,6 @@ public class Tools
                         break;
                     default:
                         var p = new Point(x, y, Consts.PointTypeSurrounding);
-                        level.SurroundingPoint.Add(p);
-                        level.Surroundings.Add(p, dictionary[s]);
                         break;
                 }
             }

@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -249,6 +251,7 @@
     <Compile Include="Assets\Game\Scripts\Application\3.Controller\ExitSceneCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\3.Controller\SellTowerCommand .cs" />
     <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartLevelCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartRoundCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartUpCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\3.Controller\UpgradeTowerCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\Args\EndLevelArgs.cs" />
