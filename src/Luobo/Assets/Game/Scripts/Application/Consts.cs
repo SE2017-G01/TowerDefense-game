@@ -26,27 +26,6 @@ public static class Consts
     public const int MonsterStatePaused = 0;
     public const int MonsterStateDying = -1;
 
-    public static float GetSysSpeed()
-    {
-        float sysSpeed;
-        switch (GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Speed)
-        {
-            case GameSpeed.ZERO:
-                sysSpeed = 0.0f;
-                break;
-            case GameSpeed.One:
-                sysSpeed = 1.0f;
-                break;
-            case GameSpeed.Two:
-                sysSpeed = 2.0f;
-                break;
-            default:
-                sysSpeed = 1.0f;
-                break;
-        }
-        return sysSpeed;
-    }
-
 
     /// <summary>
     /// Others
@@ -100,13 +79,6 @@ public static class Consts
     public const string E_ShowCreate = "E_ShowCreate";//ShowCreatorArgs
     public const string E_ShowUpgrade = "E_ShowUpgrade";//ShowUpgradeArgs
     public const string E_HidePopup = "E_HidePopup";
-}
-
-public enum GameSpeed
-{
-    ZERO = 0,
-    One = 1,
-    Two = 2
 }
 
 public enum MonsterType

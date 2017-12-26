@@ -80,13 +80,6 @@ public class RoundModel : Model
 
             for (int k = 0; k < round.Count; k++)
             {
-                ////暂停游戏时不出怪
-                //if (!GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().IsPlaying)
-                //{
-                //    yield return new WaitForSeconds(0.01f);
-                //    Debug.Log("暂停出怪！！！！！！");
-                //}
-
                 //出怪间隙
                 yield return new WaitForSeconds(SPAWN_INTERVAL);
                 Debug.Log("RoundModel:RunRound");
@@ -119,5 +112,13 @@ public class RoundModel : Model
     #endregion
 
     #region 帮助方法
+    //清除本次游戏信息
+    public void ClearCurrentProgress()
+    {
+        m_Rounds = new List<Round>();//该关卡所有的出怪信息
+        m_RoundIndex = -1; //当前回合的索引
+        m_AllRoundsComplete = false; //是否所有怪物都出来了
+        LoadLevel(MVC.GetModel<GameModel>().PlayLevel);
+    }
     #endregion
 }

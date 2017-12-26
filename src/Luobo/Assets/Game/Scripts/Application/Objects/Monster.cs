@@ -112,11 +112,6 @@ public class Monster : Role
         if (m_IsReached)
             return;
 
-        //更新速度
-        //this.MoveSpeed = info.MoveSpeed * Consts.GetSysSpeed();
-        this.MoveSpeed = info.MoveSpeed * (int)GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Speed;
-        Debug.Log("Moster Speed" + Consts.GetSysSpeed());
-
         //当前位置
         Vector3 pos = transform.position;
         //Tile nowpos = GetTile(pos);
@@ -165,7 +160,7 @@ public class Monster : Role
         this.info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
         this.MaxHp = info.Hp;
         this.Hp = info.Hp;
-        this.MoveSpeed = info.MoveSpeed * Consts.GetSysSpeed();
+        this.MoveSpeed = info.MoveSpeed;
         this.Price = info.Price;
     }
 
