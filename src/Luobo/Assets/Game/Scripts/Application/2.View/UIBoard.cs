@@ -26,6 +26,7 @@ public class UIBoard : View
 
     bool m_IsPlaying = false;
     GameSpeed m_Speed = GameSpeed.One;
+    int lastSpeed = (int)GameSpeed.One;
     public int m_Gold = 0;
     #endregion
 
@@ -55,6 +56,8 @@ public class UIBoard : View
 
             imgRoundInfo.gameObject.SetActive(value);
             imgPauseInfo.gameObject.SetActive(!value);
+            btnPause.gameObject.SetActive(value);
+            btnResume.gameObject.SetActive(!value);
         }
     }
 
@@ -64,9 +67,19 @@ public class UIBoard : View
         set
         {
             m_Speed = value;
-
-            btnSpeed1.gameObject.SetActive(m_Speed == GameSpeed.One);
-            btnSpeed2.gameObject.SetActive(m_Speed == GameSpeed.Two);
+            switch (value)
+            {
+                case GameSpeed.One:
+                    btnSpeed1.gameObject.SetActive(true);
+                    btnSpeed2.gameObject.SetActive(false);
+                    break;
+                case GameSpeed.Two:
+                    btnSpeed1.gameObject.SetActive(false);
+                    btnSpeed2.gameObject.SetActive(true);
+                    break;
+                default:
+                    break;
+            }
         }
     }
     #endregion
@@ -122,28 +135,38 @@ public class UIBoard : View
 
     public void OnSpeed1Click()
     {
-        Speed = GameSpeed.One;
+        Speed = GameSpeed.Two;
+        Time.timeScale = 2;
     }
 
     public void OnSpeed2Click()
     {
-        Speed = GameSpeed.Two;
+        Speed = GameSpeed.One;
     }
 
     public void OnPauseClick()
     {
+        if (!IsPlaying) return;
+        lastSpeed = (int)Speed;
+        Debug.Log("UIBoard:OnPauseClick:Speed:" + Speed);
+        Debug.Log("UIBoard:OnPauseClick:lastSpeed:" + lastSpeed);
         IsPlaying = false;
+        Speed = GameSpeed.ZERO;
+        Time.timeScale = 0;
     }
 
     public void OnResumeClick()
     {
+        if (IsPlaying) return;
         IsPlaying = true;
+        Speed = (GameSpeed)lastSpeed;
+        Time.timeScale = 1;
     }
 
     public void OnRoundStart(StartRoundArgs e)
     {
-        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + e.RoundIndex.ToString() : e.RoundIndex.ToString();
-        this.txtTotal.text = e.RoundIndex < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
+        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + (e.RoundIndex + 1).ToString() : (e.RoundIndex + 1).ToString();
+        this.txtTotal.text = e.RoundTotal < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
     }
 
     public void OnSystemClick()

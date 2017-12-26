@@ -30,7 +30,8 @@ public class Monster : Role
     int m_PointIndex = -1; //当前拐点索引
     bool m_IsReached = false;//是否到达终点
     private Vector3 Next ;
-    
+    MonsterInfo info;
+
     #endregion
 
     #region 属性
@@ -111,6 +112,11 @@ public class Monster : Role
         if (m_IsReached)
             return;
 
+        //更新速度
+        //this.MoveSpeed = info.MoveSpeed * Consts.GetSysSpeed();
+        this.MoveSpeed = info.MoveSpeed * (int)GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Speed;
+        Debug.Log("Moster Speed" + Consts.GetSysSpeed());
+
         //当前位置
         Vector3 pos = transform.position;
         //Tile nowpos = GetTile(pos);
@@ -156,10 +162,10 @@ public class Monster : Role
     {
         base.OnSpawn();
 
-        MonsterInfo info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
+        this.info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
         this.MaxHp = info.Hp;
         this.Hp = info.Hp;
-        this.MoveSpeed = info.MoveSpeed;
+        this.MoveSpeed = info.MoveSpeed * Consts.GetSysSpeed();
         this.Price = info.Price;
     }
 

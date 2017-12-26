@@ -80,6 +80,13 @@ public class RoundModel : Model
 
             for (int k = 0; k < round.Count; k++)
             {
+                ////暂停游戏时不出怪
+                //if (!GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().IsPlaying)
+                //{
+                //    yield return new WaitForSeconds(0.01f);
+                //    Debug.Log("暂停出怪！！！！！！");
+                //}
+
                 //出怪间隙
                 yield return new WaitForSeconds(SPAWN_INTERVAL);
                 Debug.Log("RoundModel:RunRound");

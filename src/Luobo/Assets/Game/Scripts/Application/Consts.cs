@@ -8,7 +8,7 @@ public static class Consts
 {
 
     /// <summary>
-    /// 潘笑天
+    /// PXT
     /// </summary>
     //Point
     public const int PointTypePlate = 0;
@@ -25,6 +25,32 @@ public static class Consts
     public const int MonsterStateForward = 1;
     public const int MonsterStatePaused = 0;
     public const int MonsterStateDying = -1;
+
+    public static float GetSysSpeed()
+    {
+        float sysSpeed;
+        switch (GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Speed)
+        {
+            case GameSpeed.ZERO:
+                sysSpeed = 0.0f;
+                break;
+            case GameSpeed.One:
+                sysSpeed = 1.0f;
+                break;
+            case GameSpeed.Two:
+                sysSpeed = 2.0f;
+                break;
+            default:
+                sysSpeed = 1.0f;
+                break;
+        }
+        return sysSpeed;
+    }
+
+
+    /// <summary>
+    /// Others
+    /// </summary>
 
     //目录
     public static readonly string LevelDir = Application.dataPath + @"\Game\Resources\Res\Levels";
@@ -78,8 +104,9 @@ public static class Consts
 
 public enum GameSpeed
 {
-    One,
-    Two
+    ZERO = 0,
+    One = 1,
+    Two = 2
 }
 
 public enum MonsterType
