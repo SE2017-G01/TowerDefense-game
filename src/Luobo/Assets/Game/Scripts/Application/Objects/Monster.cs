@@ -8,11 +8,11 @@ public class Monster : Role
 {
     #region 常量
     public const float CLOSED_DISTANCE = 0.1f;
-    public const int RowCount = 8;  //行数
-    public const int ColumnCount = 12; //列数
+    //public const int RowCount = 8;  //行数
+    //public const int ColumnCount = 12; //列数
 
-    public const int MAXX = 10;
-    public const int MAXY = 5;
+    public const int MAXX = 11;
+    public const int MAXY = 6;
     private int[,] dir = new int[,]
     {
        {0, 1},{0, -1}, {-1,0},{1,0}
@@ -50,6 +50,7 @@ public class Monster : Role
 
     public void Load(Vector3[] path)
     {
+        Debug.Log("Monster:Load");
         m_Path = path;
         MoveNext();
     }
@@ -66,13 +67,11 @@ public class Monster : Role
 
     void MoveNext()
     {
-        if (!HasNext())
-            return;
-
         if (m_PointIndex == -1)
         {
             //刚刚出来，那就放置到起点位置
             m_PointIndex = 0;
+            Debug.Log("Monster:MoveNext:" + Spawner.m_Map.start.ToString());
             MoveTo(Spawner.m_Map.GetPosition(Spawner.m_Map.start));
         }
         else
@@ -117,11 +116,10 @@ public class Monster : Role
         //Tile nowpos = GetTile(pos);
         //目标位置
         //Vector3 dest = m_Path[m_PointIndex + 1];
-        Map nmap=new Map();
-        Tile now = nmap.GetTile(pos);
+        Tile now = Spawner.m_Map.GetTile(pos);
 
         if (m_PointIndex==0)
-            Next= nmap.GetPosition(Getbest(now));
+            Next = Spawner.m_Map.GetPosition(Getbest(now));
         if ((now.X == Spawner.m_Map.lastx) && (now.Y == Spawner.m_Map.lasty))
             //到达终点
         {
@@ -138,8 +136,8 @@ public class Monster : Role
         {
             //到达拐点
             MoveTo(Next);
-            Next = nmap.GetPosition(Getbest(now));
-            if (nmap.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
+            Next = Spawner.m_Map.GetPosition(Getbest(now));
+            if (Spawner.m_Map.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
            
     }
         else
@@ -180,4 +178,4 @@ public class Monster : Role
     #region 帮助方法
    
     #endregion
-}       
+}
