@@ -39,8 +39,12 @@ public class Tools
 
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
+<<<<<<< HEAD
         level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
         //level.MonsterGap = float.Parse(doc.SelectSingleNode("/Level/MonsterGap").InnerText);
+=======
+        level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
+>>>>>>> dev
 
         #region 读取关卡字典
         var dicNodes = doc.SelectNodes("/Level/Dictionary/Item");
@@ -187,7 +191,7 @@ public class Tools
         sb.AppendLine(string.Format("<CardImage>{0}</CardImage>", level.CardImage));
         sb.AppendLine(string.Format("<Background>{0}</Background>", level.Background));
         sb.AppendLine(string.Format("<Road>{0}</Road>", level.Road));
-        sb.AppendLine(string.Format("<InitScore>{0}</InitScore>", level.InitScore));
+        sb.AppendLine(string.Format("<InitScore>{0}</InitScore>", level.InitGold));
 
         sb.AppendLine("<Holder>");
         for (int i = 0; i < level.Holder.Count; i++)

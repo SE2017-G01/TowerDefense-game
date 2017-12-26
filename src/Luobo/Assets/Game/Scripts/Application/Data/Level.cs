@@ -8,15 +8,11 @@ public class Level
     public string Name;//名字
     public string CardImage;//卡片
     public string Road;//路径
-    public int InitScore;//金币
     public string Background;//背景
     public float MonsterGap;//怪兽间距 
     public Point StartPoint;//起点
     public Point EndPoint;//终点
-
-    //障碍物的位置
-    public List<Point> SurroundingPoint = new List<Point>();
-    public Dictionary<Point, string> Surroundings = new Dictionary<Point, string>();
+    public int InitGold;//金币
 
     //炮塔可放置的位置
     public List<Point> Holder = new List<Point>();
