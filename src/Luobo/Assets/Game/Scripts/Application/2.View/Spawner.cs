@@ -58,8 +58,15 @@ public class Spawner : View
             m_Map.CalcShortPath();
             return; //提示这个位置不能造塔
         }
+        tile.Data = null;
+        m_Map.CalcShortPath();
         //创建Tower
         TowerInfo info = Game.Instance.StaticData.GetTowerInfo(towerID);
+        if (GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold < info.BasePrice)
+        {
+            return;//提示金钱不足
+        }
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold -= info.BasePrice;
         GameObject go = Game.Instance.ObjectPool.Spawn(info.PrefabName);
         Tower tower = go.GetComponent<Tower>();
         tower.transform.position = position;
@@ -77,8 +84,12 @@ public class Spawner : View
     void monster_Dead(Role monster)
     {
         //怪物回收
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold += monster.Price;
         Game.Instance.ObjectPool.Unspawn(monster.gameObject);
-
+       
+        //UIBoard.Score++;
+        // UIBoard.m_Score++;
+        // UIBoard.txtScore.text = UIBoard.m_Score.ToString();
         //胜利条件判断
         RoundModel rm = GetModel<RoundModel>();
         GameModel gm = GetModel<GameModel>();
@@ -106,6 +117,7 @@ public class Spawner : View
     {
         //萝卜掉血
         m_Luobo.Damage(1);
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold -= monster.Price;
 
         //怪物死亡
         monster.Hp = 0;

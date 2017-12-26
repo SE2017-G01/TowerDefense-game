@@ -12,7 +12,8 @@ public class UIBoard : View
     #endregion
 
     #region 字段
-    public Text txtScore;
+
+    public Text txtGold;
     public Image imgRoundInfo;
     public Text txtCurrent;
     public Text txtTotal;
@@ -25,7 +26,7 @@ public class UIBoard : View
 
     bool m_IsPlaying = false;
     GameSpeed m_Speed = GameSpeed.One;
-    int m_Score = 0;
+    public int m_Gold = 0;
     #endregion
 
     #region 属性
@@ -34,13 +35,13 @@ public class UIBoard : View
         get { return Consts.V_Board; }
     }
 
-    public int Score
+    public int Gold
     {
-        get { return m_Score; }
+        get { return m_Gold; }
         set
         {
-            m_Score = value;
-            txtScore.text = value.ToString();
+            m_Gold = value;
+            txtGold.text = value.ToString();
         }
     }
 
@@ -80,7 +81,7 @@ public class UIBoard : View
     #region Unity回调
     void Awake()
     {
-        this.Score = 0;
+        this.Gold = 0;
         this.IsPlaying = true;
         this.Speed = GameSpeed.One;
     }

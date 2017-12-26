@@ -124,7 +124,7 @@ public class Map : MonoBehaviour
     {
         //清除当前状态
         Clear();
-
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold += level.InitGold;
         //保存
         this.m_level = level;
         //加载图片
