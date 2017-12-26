@@ -89,15 +89,15 @@ MonoBehaviour:
     y: 0
     width: 1022
     height: 390
-  m_MinSize: {x: 102, y: 121}
+  m_MinSize: {x: 202, y: 221}
   m_MaxSize: {x: 4002, y: 4021}
-  m_ActualView: {fileID: 13}
+  m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
   - {fileID: 13}
   - {fileID: 15}
-  m_Selected: 1
-  m_LastSelected: 2
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -143,8 +143,8 @@ MonoBehaviour:
     y: 0
     width: 1022
     height: 731
-  m_MinSize: {x: 202, y: 342}
-  m_MaxSize: {x: 4002, y: 8042}
+  m_MinSize: {x: 202, y: 421}
+  m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
   controlID: 148
 --- !u!114 &7
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_MinSize: {x: 711, y: 471}
   m_MaxSize: {x: 18006, y: 14021}
   vertical: 0
-  controlID: 147
+  controlID: 118
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -541,7 +541,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 148}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_DirectoriesAreaWidth: 110
 --- !u!114 &18
@@ -644,17 +644,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 92
-    width: 1023
+    width: 1020
     height: 369
   m_SceneLighting: 1
-  lastFramingTime: 571.447440712511
+  lastFramingTime: 4624.242392482794
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 505.47113, y: 466.27014, z: -9.465757}
+    m_Target: {x: 651.63336, y: 348.1177, z: -4}
     speed: 2
-    m_Value: {x: 505.47113, y: 466.27014, z: -9.465757}
+    m_Value: {x: 651.63336, y: 348.1177, z: -4}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -681,9 +681,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 1128.1521
+    m_Target: 924.98114
     speed: 2
-    m_Value: 1128.1521
+    m_Value: 924.98114
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -723,9 +723,9 @@ MonoBehaviour:
     height: 221
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d02d0000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 4473ffffea85ffffa6fbffff0000000048470000
+    m_ExpandedIDs: f864fefff065feff2e67feff9667feffd267feffec67fefff467feff267dfeff645cffff268bffffa2a5ffffb2a5ffffc2a5ffffc4a5ffffa6fbffff00000000e8460000ec46000034580000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
