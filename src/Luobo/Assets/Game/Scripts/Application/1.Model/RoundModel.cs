@@ -45,11 +45,13 @@ public class RoundModel : Model
     #region 方法
     public void LoadLevel(Level level)
     {
+        Debug.Log("RoundModel:LoadLevel:level.RoundsCount:" + level.Rounds.Count);
         m_Rounds = level.Rounds;
     }
 
     public void StartRound()
     {
+        Debug.Log("RoundModel:StartRound!");
         m_Coroutine = Game.Instance.StartCoroutine(RunRound());
     }
 
@@ -62,7 +64,7 @@ public class RoundModel : Model
     {
         m_RoundIndex = -1;
         m_AllRoundsComplete = false;
-
+        Debug.Log("RoundModel:RunRound!Rounds.Count:" + m_Rounds.Count);
         for (int i = 0; i < m_Rounds.Count; i++)
         {
             //设置回合
@@ -80,7 +82,7 @@ public class RoundModel : Model
             {
                 //出怪间隙
                 yield return new WaitForSeconds(SPAWN_INTERVAL);
-
+                Debug.Log("RoundModel:RunRound");
                 //出怪事件
                 SpawnMonsterArgs ee = new SpawnMonsterArgs();
                 ee.MonsterID = round.Monster;

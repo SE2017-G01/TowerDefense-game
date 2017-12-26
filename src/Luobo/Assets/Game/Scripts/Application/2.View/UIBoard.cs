@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class UIBoard : View
 {
@@ -86,6 +87,31 @@ public class UIBoard : View
     #endregion
 
     #region 事件回调
+
+    public void OnBoardClick(object sender, BoardClickEventArgs e)
+    {
+        Vector3 pos = e.WorldPos;
+        Debug.Log("UIBoard:鼠标点击!" + EventSystem.current.currentSelectedGameObject.name);
+        switch (EventSystem.current.currentSelectedGameObject.name)
+        {
+            case "BtnSpeed1":
+                OnSpeed1Click();
+                break;
+            case "BtnSpeed2":
+                OnSpeed2Click();
+                break;
+            case "BtnResume":
+                OnResumeClick();
+                break;
+            case "BtnPause":
+                OnPauseClick();
+                break;
+            case "BtnSystem":
+                OnSystemClick();
+                break;
+        }
+    }
+
     public void OnSpeed1Click()
     {
         Speed = GameSpeed.One;

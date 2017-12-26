@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 class CountDownCompleteCommand : Controller
 {
@@ -13,6 +14,9 @@ class CountDownCompleteCommand : Controller
 
         //开始出怪
         RoundModel rModel = GetModel<RoundModel>();
+        if(rModel == null)
+            Debug.LogAssertion("RoundModel为空！!");
+        Debug.Log("CountDownComplete!");
         rModel.StartRound();
     }
 }

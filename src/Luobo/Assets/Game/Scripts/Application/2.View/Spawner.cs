@@ -37,6 +37,7 @@ public class Spawner : View
     //创建怪物
     void SpawnMonster(int MonsterID)
     {
+        Debug.Log("Spawner:SpawnMonster");
         string prefabName = "Monster" + MonsterID;
         GameObject go = Game.Instance.ObjectPool.Spawn(prefabName);
         Monster monster = go.GetComponent<Monster>();
@@ -113,6 +114,7 @@ public class Spawner : View
     void map_OnTileClick(object sender, TileClickEventArgs e)
     {
         GameModel gm = GetModel<GameModel>();
+        
 
         //游戏还未开始，那么不操作菜单
         if (!gm.IsPlaying)
@@ -176,10 +178,13 @@ public class Spawner : View
                     m_Map.OnTileClick += map_OnTileClick;
 
                     //加载地图
+                    
                     GameModel gModel = GetModel<GameModel>();
+                    Debug.Log("Spawner:" + gModel.PlayLevel.Name);
                     m_Map.LoadLevel(gModel.PlayLevel);
 
                     //加载萝卜
+                    var index = m_Map.lastx + m_Map.lasty * 11;
                     Vector3 luoboPos = m_Map.GetPosition(m_Map.GetTile(m_Map.lastx, m_Map.lasty));
                     SpawnLuobo(luoboPos);
                 }
