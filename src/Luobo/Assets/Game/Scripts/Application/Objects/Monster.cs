@@ -30,7 +30,8 @@ public class Monster : Role
     int m_PointIndex = -1; //当前拐点索引
     bool m_IsReached = false;//是否到达终点
     private Vector3 Next ;
-    
+    MonsterInfo info;
+
     #endregion
 
     #region 属性
@@ -156,7 +157,7 @@ public class Monster : Role
     {
         base.OnSpawn();
 
-        MonsterInfo info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
+        this.info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
         this.MaxHp = info.Hp;
         this.Hp = info.Hp;
         this.MoveSpeed = info.MoveSpeed;
