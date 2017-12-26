@@ -18,6 +18,7 @@ public abstract class Role : ReusbleObject, IReusable
     #region 字段
     [SerializeField] int m_Hp;
     [SerializeField] int m_MaxHp;
+    [SerializeField] int m_Price;
     #endregion
 
     #region 属性
@@ -60,6 +61,13 @@ public abstract class Role : ReusbleObject, IReusable
             m_MaxHp = value;
         }
     }
+
+    public int Price
+    {
+        get { return m_Price; }
+        set { m_Price = value; }
+    }
+
 
     public bool IsDead
     {
@@ -105,6 +113,7 @@ public abstract class Role : ReusbleObject, IReusable
 
         m_Hp = 0;
         m_MaxHp = 0;
+        m_Price = 0;
     }
     #endregion
 

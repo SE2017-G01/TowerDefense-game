@@ -8,11 +8,11 @@ public class Monster : Role
 {
     #region 常量
     public const float CLOSED_DISTANCE = 0.1f;
-    public const int RowCount = 8;  //行数
-    public const int ColumnCount = 12; //列数
+    //public const int RowCount = 8;  //行数
+    //public const int ColumnCount = 12; //列数
 
-    public const int MAXX = 10;
-    public const int MAXY = 5;
+    public const int MAXX = 11;
+    public const int MAXY = 6;
     private int[,] dir = new int[,]
     {
        {0, 1},{0, -1}, {-1,0},{1,0}
@@ -29,12 +29,9 @@ public class Monster : Role
     Vector3[] m_Path = null; //路径拐点
     int m_PointIndex = -1; //当前拐点索引
     bool m_IsReached = false;//是否到达终点
-    float MapWidth;//地图宽
-    float MapHeight;//地图高
-    private Tile[] m_grid = new Tile[100];
-    float TileWidth;//格子宽
-    float TileHeight;//格子高
     private Vector3 Next ;
+    MonsterInfo info;
+
     #endregion
 
     #region 属性
@@ -43,12 +40,18 @@ public class Monster : Role
         get { return m_MoveSpeed; }
         set { m_MoveSpeed = value; }
     }
+    /*public int Price
+    {
+        get { return m_price; }
+        set { m_price = value; }
+    }*/
     #endregion
 
     #region 方法
 
     public void Load(Vector3[] path)
     {
+        Debug.Log("Monster:Load");
         m_Path = path;
         MoveNext();
     }
@@ -65,13 +68,11 @@ public class Monster : Role
 
     void MoveNext()
     {
-        if (!HasNext())
-            return;
-
         if (m_PointIndex == -1)
         {
             //刚刚出来，那就放置到起点位置
             m_PointIndex = 0;
+            Debug.Log("Monster:MoveNext:" + Spawner.m_Map.start.ToString());
             MoveTo(Spawner.m_Map.GetPosition(Spawner.m_Map.start));
         }
         else
@@ -116,11 +117,10 @@ public class Monster : Role
         //Tile nowpos = GetTile(pos);
         //目标位置
         //Vector3 dest = m_Path[m_PointIndex + 1];
-        Map nmap=new Map();
-        Tile now = nmap.GetTile(pos);
+        Tile now = Spawner.m_Map.GetTile(pos);
 
         if (m_PointIndex==0)
-            Next= nmap.GetPosition(Getbest(now));
+            Next = Spawner.m_Map.GetPosition(Getbest(now));
         if ((now.X == Spawner.m_Map.lastx) && (now.Y == Spawner.m_Map.lasty))
             //到达终点
         {
@@ -137,8 +137,8 @@ public class Monster : Role
         {
             //到达拐点
             MoveTo(Next);
-            Next = nmap.GetPosition(Getbest(now));
-            if (nmap.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
+            Next = Spawner.m_Map.GetPosition(Getbest(now));
+            if (Spawner.m_Map.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
            
     }
         else
@@ -157,10 +157,11 @@ public class Monster : Role
     {
         base.OnSpawn();
 
-        MonsterInfo info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
+        this.info = Game.Instance.StaticData.GetMonsterInfo((int)MonsterType);
         this.MaxHp = info.Hp;
         this.Hp = info.Hp;
         this.MoveSpeed = info.MoveSpeed;
+        this.Price = info.Price;
     }
 
     public override void OnUnspawn()
@@ -176,31 +177,6 @@ public class Monster : Role
     #endregion
 
     #region 帮助方法
-    //获取格子中心点所在的世界坐标
-    public Vector3 GetPosition(Tile t)
-    {
-        return new Vector3(
-            -MapWidth / 2 + (t.X + 0.5f) * TileWidth,
-            -MapHeight / 2 + (t.Y + 0.5f) * TileHeight,
-            0
-        );
-    }
-
-    //根据格子索引号获得格子
-    public Tile GetTile(int tileX, int tileY)
-    {
-        int index = tileX + tileY * ColumnCount;
-        if (index < 0 || index >= Map.m_grid.Count)
-            throw new IndexOutOfRangeException("格子索引越界");
-        return Map.m_grid[index];
-    }
-
-    //获取所在位置获得格子
-    public Tile GetTile(Vector3 position)
-    {
-        int tileX = (int)((position.x + MapWidth / 2) / TileWidth);
-        int tileY = (int)((position.y + MapHeight / 2) / TileHeight);
-        return GetTile(tileX, tileY);
-    }
+   
     #endregion
-}       
+}

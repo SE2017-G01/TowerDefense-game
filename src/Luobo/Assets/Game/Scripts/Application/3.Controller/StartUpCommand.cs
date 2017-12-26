@@ -17,7 +17,7 @@ class StartUpCommand : Controller
         RegisterController(Consts.E_StartLevel, typeof(StartLevelCommand));
         RegisterController(Consts.E_EndLevel, typeof(EndLevelCommand));
         RegisterController(Consts.E_CountDownComplete, typeof(CountDownCompleteCommand));
-
+        RegisterController(Consts.E_StartRound, typeof(StartRoundCommand));
         RegisterController(Consts.E_UpgradeTower, typeof(UpgradeTowerCommand));
         RegisterController(Consts.E_SellTower, typeof(SellTowerCommand));
 

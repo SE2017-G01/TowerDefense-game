@@ -12,6 +12,10 @@ public class Game : ApplicationBase<Game>
     [HideInInspector] public Sound Sound = null;//声音控制
     [HideInInspector] public StaticData StaticData = null;//静态数据
 
+    public float TileWidth;//格子宽
+    public float TileHeight;//格子高
+    public Map _map;
+
     //全局方法
     public void LoadScene(int level)
     {
@@ -56,5 +60,10 @@ public class Game : ApplicationBase<Game>
 
         //启动游戏
         SendEvent(Consts.E_StartUp);
+    }
+
+    public int Hello(int t)
+    {
+        return t;
     }
 }

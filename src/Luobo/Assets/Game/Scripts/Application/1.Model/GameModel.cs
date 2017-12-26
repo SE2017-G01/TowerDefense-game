@@ -94,12 +94,15 @@ public class GameModel : Model
         List<Level> levels = new List<Level>();
         for (int i = 0; i < files.Count; i++)
         {
-            Level level = new Level();
-            Tools.FillLevel(files[i].FullName, ref level);
+            Level level = Tools.FillLevel(files[i].FullName);
+            if (level.EndPoint == null)
+            {
+                Debug.LogWarning("GameModel：EndPoint为空！！" + level.Holder.Count + " " + level.Rounds.Count);
+            }
             levels.Add(level);
         }
         m_Levels = levels;
-
+        Debug.Log("GameModel:" + m_Levels[0].Name);
         //读取游戏进度
         m_GameProgress = Saver.GetProgress();
     }
@@ -133,6 +136,13 @@ public class GameModel : Model
         m_PlayLevelIndex = -1;
         m_GameProgress = -1;
         Saver.SetProgress(-1);
+    }
+
+    //清除本次游戏信息
+    public void ClearCurrentProgress()
+    {
+        m_IsPlaying = false;
+        m_PlayLevelIndex = -1;
     }
 
     #endregion
