@@ -24,8 +24,10 @@ public class UIBoard : View
     public Button btnPause;
     public Button btnSystem;
 
+    public bool onUISystem = false;
+
     bool m_IsPlaying = false;
-    GameSpeed m_Speed = GameSpeed.One;
+    float lastSpeed = 1.0f;
     public int m_Gold = 0;
     #endregion
 
@@ -55,20 +57,11 @@ public class UIBoard : View
 
             imgRoundInfo.gameObject.SetActive(value);
             imgPauseInfo.gameObject.SetActive(!value);
+            btnPause.gameObject.SetActive(value);
+            btnResume.gameObject.SetActive(!value);
         }
     }
 
-    public GameSpeed Speed
-    {
-        get { return m_Speed; }
-        set
-        {
-            m_Speed = value;
-
-            btnSpeed1.gameObject.SetActive(m_Speed == GameSpeed.One);
-            btnSpeed2.gameObject.SetActive(m_Speed == GameSpeed.Two);
-        }
-    }
     #endregion
 
     #region 方法
@@ -84,7 +77,13 @@ public class UIBoard : View
     {
         this.Gold = 0;
         this.IsPlaying = true;
+<<<<<<< HEAD
         this.Speed = GameSpeed.One;
+=======
+        btnSpeed1.gameObject.SetActive(true);
+        btnSpeed2.gameObject.SetActive(false);
+        Time.timeScale = 1.0f;
+>>>>>>> dev
         //this.txtTotal.text = MVC.GetModel<RoundModel>().RoundTotal.ToString();
     }
     #endregion
@@ -94,7 +93,17 @@ public class UIBoard : View
     public void OnBoardClick(object sender, BoardClickEventArgs e)
     {
         Vector3 pos = e.WorldPos;
+<<<<<<< HEAD
         if(EventSystem.current.currentSelectedGameObject == null)
+=======
+
+        if (onUISystem)
+        {
+            GameObject.Find("Canvas").transform.Find("UISystem").GetComponent<UISystem>().OnUISystemClick(sender, e);
+        }
+
+        if (EventSystem.current.currentSelectedGameObject == null)
+>>>>>>> dev
             Debug.Log("UIBoard:鼠标点击!currentSelectedGameObject空指针！！");
         else
         {
@@ -122,22 +131,39 @@ public class UIBoard : View
 
     public void OnSpeed1Click()
     {
-        Speed = GameSpeed.One;
+        if (!IsPlaying) return;
+        Time.timeScale = 2.0f;
+        btnSpeed1.gameObject.SetActive(false);
+        btnSpeed2.gameObject.SetActive(true);
     }
 
     public void OnSpeed2Click()
     {
-        Speed = GameSpeed.Two;
+        if (!IsPlaying) return;
+        Time.timeScale = 1.0f;
+        btnSpeed1.gameObject.SetActive(true);
+        btnSpeed2.gameObject.SetActive(false);
     }
 
     public void OnPauseClick()
     {
+        if (!IsPlaying) return;
+        lastSpeed = Time.timeScale;
         IsPlaying = false;
+        Time.timeScale = 0;
     }
 
     public void OnResumeClick()
     {
+        if (IsPlaying || onUISystem) return;
         IsPlaying = true;
+        Time.timeScale = lastSpeed;
+    }
+
+    public void OnRoundStart(StartRoundArgs e)
+    {
+        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + (e.RoundIndex + 1).ToString() : (e.RoundIndex + 1).ToString();
+        this.txtTotal.text = e.RoundTotal < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
     }
 
     public void OnRoundStart(StartRoundArgs e)
@@ -148,7 +174,17 @@ public class UIBoard : View
 
     public void OnSystemClick()
     {
+        if (onUISystem) return;
+        onUISystem = true;
+        OnPauseClick();
+        MVC.GetView<UISystem>().Show();
+    }
 
+    public void UnSystemClick()
+    {
+        onUISystem = false;
+        OnResumeClick();
+        MVC.GetView<UISystem>().Hide();
     }
 
     public override void RegisterEvents()

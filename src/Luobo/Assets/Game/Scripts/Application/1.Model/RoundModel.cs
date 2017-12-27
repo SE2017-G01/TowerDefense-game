@@ -70,6 +70,8 @@ public class RoundModel : Model
             //设置回合
             m_RoundIndex = i;
 
+            Debug.Log("RoundModel:RunRound!m_RoundIndex:" + m_RoundIndex);
+
             //回合开始事件
             StartRoundArgs e = new StartRoundArgs();
             e.RoundIndex = m_RoundIndex;

@@ -8,7 +8,11 @@ public static class Consts
 {
 
     /// <summary>
+<<<<<<< HEAD
     /// 潘笑天
+=======
+    /// PXT
+>>>>>>> dev
     /// </summary>
     //Point
     public const int PointTypePlate = 0;
@@ -26,6 +30,14 @@ public static class Consts
     public const int MonsterStatePaused = 0;
     public const int MonsterStateDying = -1;
 
+<<<<<<< HEAD
+=======
+
+    /// <summary>
+    /// Others
+    /// </summary>
+
+>>>>>>> dev
     //目录
     public static readonly string LevelDir = Application.dataPath + @"\Game\Resources\Res\Levels";
     public static readonly string MapDir = Application.dataPath + @"\Game\Resources\Res\Maps";
@@ -74,12 +86,6 @@ public static class Consts
     public const string E_ShowCreate = "E_ShowCreate";//ShowCreatorArgs
     public const string E_ShowUpgrade = "E_ShowUpgrade";//ShowUpgradeArgs
     public const string E_HidePopup = "E_HidePopup";
-}
-
-public enum GameSpeed
-{
-    One,
-    Two
 }
 
 public enum MonsterType

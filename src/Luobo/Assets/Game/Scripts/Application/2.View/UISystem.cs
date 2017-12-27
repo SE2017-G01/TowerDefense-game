@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class UISystem : View
 {
@@ -43,19 +44,53 @@ public class UISystem : View
 
     }
 
+    public void OnUISystemClick(object sender, BoardClickEventArgs e)
+    {
+        if (EventSystem.current.currentSelectedGameObject == null)
+            Debug.Log("UISystem:鼠标点击!currentSelectedGameObject空指针！！");
+        else
+        {
+            Debug.Log("UISystem:鼠标点击!" + EventSystem.current.currentSelectedGameObject.name);
+            switch (EventSystem.current.currentSelectedGameObject.name)
+            {
+                case "btnResume":
+                    OnResumeClick();
+                    break;
+                case "btnRestart":
+                    OnRestartClick();
+                    break;
+                case "btnSelect":
+                    OnSelectClick();
+                    break;
+            }
+        }
+    }
+
     public void OnResumeClick()
     {
-
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().UnSystemClick();
     }
 
     public void OnRestartClick()
     {
+        //停止出怪
+        GetModel<RoundModel>().StopRound();
+        //停止游戏
+        GetModel<GameModel>().EndLevel(false);
 
+        StartLevelArgs e = new StartLevelArgs();
+        e.LevelIndex = GetModel<GameModel>().PlayLevelIndex;
+        SendEvent(Consts.E_StartLevel, e);
     }
 
     public void OnSelectClick()
     {
+        //停止出怪
+        GetModel<RoundModel>().StopRound();
+        //停止游戏
+        GetModel<GameModel>().EndLevel(false);
 
+        Game.Instance.LoadScene(2);
     }
     #endregion
 

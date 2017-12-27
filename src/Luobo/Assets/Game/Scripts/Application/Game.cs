@@ -61,4 +61,9 @@ public class Game : ApplicationBase<Game>
         //启动游戏
         SendEvent(Consts.E_StartUp);
     }
+
+    public int Hello(int t)
+    {
+        return t;
+    }
 }

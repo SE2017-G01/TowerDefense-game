@@ -39,9 +39,15 @@ public class Tools
 
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
+<<<<<<< HEAD
 
         level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
 
+=======
+        level.CardImage = doc.SelectSingleNode("/Level/CardImage").InnerText;
+        level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
+
+>>>>>>> dev
         #region 读取关卡字典
         var dicNodes = doc.SelectNodes("/Level/Dictionary/Item");
         var dictionary = new Dictionary<string, string>();
