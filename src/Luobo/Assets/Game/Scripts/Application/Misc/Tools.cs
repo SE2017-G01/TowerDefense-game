@@ -59,7 +59,7 @@ public class Tools
         surroundingStr = surroundingStr.Replace("\r\n", "");
         surroundingStr = surroundingStr.Replace(" ", "");
         string[] surrounding = surroundingStr.Split(',');
-        int x = 0, y = 0;
+        int x = 0, y = 5;
         foreach (var s in surrounding)
         {
             if (dictionary.ContainsKey(s))
@@ -87,7 +87,7 @@ public class Tools
 
             if (x == 10)
             {
-                y++;
+                y--;
                 x = 0;
             }
             else
