@@ -39,7 +39,7 @@ public class Tools
 
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
-
+        level.CardImage = doc.SelectSingleNode("/Level/CardImage").InnerText;
         level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
 
         #region 读取关卡字典

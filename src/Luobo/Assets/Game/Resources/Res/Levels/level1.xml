@@ -3,6 +3,7 @@
   <Name>第一关：敌人来袭</Name>
   <Background>bg1.png</Background>
   <Road>plate.png</Road>
+  <CardImage>card2.png</CardImage>
   <InitScore>10</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>

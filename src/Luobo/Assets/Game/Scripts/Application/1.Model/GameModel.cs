@@ -138,13 +138,6 @@ public class GameModel : Model
         Saver.SetProgress(-1);
     }
 
-    //清除本次游戏信息
-    public void ClearCurrentProgress()
-    {
-        m_IsPlaying = false;
-        m_PlayLevelIndex = -1;
-    }
-
     #endregion
 
     #region Unity回调

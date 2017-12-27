@@ -73,17 +73,23 @@ public class UISystem : View
 
     public void OnRestartClick()
     {
-        GameModel gm = GetModel<GameModel>();
+        //停止出怪
+        GetModel<RoundModel>().StopRound();
+        //停止游戏
+        GetModel<GameModel>().EndLevel(false);
 
         StartLevelArgs e = new StartLevelArgs();
-        e.LevelIndex = gm.PlayLevelIndex;
+        e.LevelIndex = GetModel<GameModel>().PlayLevelIndex;
         SendEvent(Consts.E_StartLevel, e);
     }
 
     public void OnSelectClick()
     {
-        //GetModel<GameModel>().ClearCurrentProgress();
-        GetModel<RoundModel>().ClearCurrentProgress();
+        //停止出怪
+        GetModel<RoundModel>().StopRound();
+        //停止游戏
+        GetModel<GameModel>().EndLevel(false);
+
         Game.Instance.LoadScene(2);
     }
     #endregion
