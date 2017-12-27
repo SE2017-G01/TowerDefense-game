@@ -77,13 +77,9 @@ public class UIBoard : View
     {
         this.Gold = 0;
         this.IsPlaying = true;
-<<<<<<< HEAD
-        this.Speed = GameSpeed.One;
-=======
         btnSpeed1.gameObject.SetActive(true);
         btnSpeed2.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
->>>>>>> dev
         //this.txtTotal.text = MVC.GetModel<RoundModel>().RoundTotal.ToString();
     }
     #endregion
@@ -93,9 +89,8 @@ public class UIBoard : View
     public void OnBoardClick(object sender, BoardClickEventArgs e)
     {
         Vector3 pos = e.WorldPos;
-<<<<<<< HEAD
+
         if(EventSystem.current.currentSelectedGameObject == null)
-=======
 
         if (onUISystem)
         {
@@ -103,7 +98,6 @@ public class UIBoard : View
         }
 
         if (EventSystem.current.currentSelectedGameObject == null)
->>>>>>> dev
             Debug.Log("UIBoard:鼠标点击!currentSelectedGameObject空指针！！");
         else
         {
@@ -159,12 +153,7 @@ public class UIBoard : View
         IsPlaying = true;
         Time.timeScale = lastSpeed;
     }
-
-    public void OnRoundStart(StartRoundArgs e)
-    {
-        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + (e.RoundIndex + 1).ToString() : (e.RoundIndex + 1).ToString();
-        this.txtTotal.text = e.RoundTotal < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
-    }
+    
 
     public void OnRoundStart(StartRoundArgs e)
     {

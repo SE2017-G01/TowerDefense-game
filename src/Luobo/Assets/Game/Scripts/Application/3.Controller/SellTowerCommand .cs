@@ -16,7 +16,7 @@ class SellTowerCommand : Controller
 
         //半价出售
         GameModel gm = GetModel<GameModel>();
-        gm.Gold += e.tower.Price / 2;
+        GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold += e.tower.Price / 2;
 
         //回收
         Game.Instance.ObjectPool.Unspawn(e.tower.gameObject);

@@ -95,7 +95,7 @@ public class Monster : Role
         {
             int xx = x + dir[k, 0];
             int yy = y + dir[k, 1];
-            if ((xx >= 0) && (xx <= MAXX) && (yy >= 0) && (yy <= MAXY))
+            if ((xx >= 0) && (xx < MAXX) && (yy >= 0) && (yy < MAXY))
             {
                 //Tile e = GetTile(xx, yy);
                 Tile e =Spawner.m_Map.GetTile(xx,yy);

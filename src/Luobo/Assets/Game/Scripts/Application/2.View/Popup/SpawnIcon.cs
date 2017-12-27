@@ -20,7 +20,7 @@ public class SpawnIcon : MonoBehaviour
         m_CreatePosition = createPostion;
 
         //是否足够
-        m_Enough = gm.Gold > info.BasePrice;
+        m_Enough = GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold >= info.BasePrice;
 
         //图标
         string path = "Res/Roles/" + (m_Enough ? info.NormalIcon : info.DisabledIcon);

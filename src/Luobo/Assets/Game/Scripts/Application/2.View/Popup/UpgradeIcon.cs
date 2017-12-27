@@ -17,7 +17,9 @@ public class UpgradeIcon : MonoBehaviour
         
         //图标
         TowerInfo info = Game.Instance.StaticData.GetTowerInfo(tower.ID);
-        string path = "Res/Roles/" + (tower.IsTopLevel ? info.DisabledIcon : info.NormalIcon);
+        string path = "Res/Roles/"+ (tower.IsTopLevel ? info.DisabledIcon : info.NormalIcon);
+        if(GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold<tower.BasePrice*tower.Level)
+        path = "Res/Roles/"+info.DisabledIcon;
         m_Render.sprite = Resources.Load<Sprite>(path);
     }
 
@@ -25,7 +27,8 @@ public class UpgradeIcon : MonoBehaviour
     {
         if (m_Tower.IsTopLevel)
             return;
-
+        if (GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold <
+            m_Tower.BasePrice * m_Tower.Level) return;
         UpgradeTowerArgs e = new UpgradeTowerArgs()
         {
             tower = m_Tower
