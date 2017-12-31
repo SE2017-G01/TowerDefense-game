@@ -20,7 +20,7 @@ public abstract class Tower : ReusbleObject
     public float GuardRange { get; private set; }
     public int BasePrice { get; private set; }
     public int UseBulletID { get; private set; }
-    public int Price { get { return BasePrice * Level; } }
+    public int Price { get { return BasePrice +BasePrice* (Level)*(Level-1)/2; } }
     public Tile Tile { get; private set; }
     public Rect MapRect { get; private set; }
 

@@ -169,7 +169,7 @@ public class Map : MonoBehaviour
         last.Y = lasty;
         //炮塔点
         for (int x = 0; x < MAXX; x++)
-            for (int y = 0; y < MAXY - 1; y++)//最上面一行不放
+            for (int y = 0; y < MAXY ; y++)
             {
                 Tile t = GetTile(x, y);
                 t.CanHold = true;
@@ -351,10 +351,10 @@ public class Map : MonoBehaviour
     {
         //Queue<Tile> g;
         for (int x = 0; x < MAXX; x++)
-            for (int y = 0; y < MAXY; y++)
-            {
-                GetTile(x, y).distance = 100;
-            }
+        for (int y = 0; y < MAXY; y++)
+        {
+            GetTile(x, y).distance = 100;
+        }
         List<Tile> queue = new List<Tile>();
         Tile[] g = new Tile[100];
         int l = 0;
@@ -370,7 +370,7 @@ public class Map : MonoBehaviour
             {
                 int xx = x + dir[k, 0];
                 int yy = y + dir[k, 1];
-                if ((xx >= 0) && (xx < MAXX) && (yy >= 0) && (yy < MAXY - 1))//最上面一行不走
+                if ((xx >= 0) && (xx < MAXX) && (yy >= 0) && (yy < MAXY))
                 {
                     Tile e = GetTile(xx, yy);
                     if (e.Data == null)
@@ -383,7 +383,12 @@ public class Map : MonoBehaviour
             }
         }
         if (GetTile(startx, starty).distance >= 100) return false;
-        else return true;
+        for (int x = 0; x < MAXX; x++)
+        for (int y = 0; y < MAXY; y++)
+            if (GetTile(x, y).Data==null)
+                if (GetTile(x, y).distance == 100)
+                    return false;
+        return true;
     }
 
     //计算地图大小，格子大小

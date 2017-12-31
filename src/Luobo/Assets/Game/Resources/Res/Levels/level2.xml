@@ -29,8 +29,8 @@
 <Point X="10" Y="5"/>
 </Path>
   <Rounds>
-    <Round Monster="0" Count="1"/>
-    <Round Monster="0" Count="3"/>
-    <Round Monster="0" Count="7"/>
+    <Round Monster="3" Count="5"/>
+    <Round Monster="4" Count="3"/>
+    <Round Monster="5" Count="1"/>
   </Rounds>
 </Level>

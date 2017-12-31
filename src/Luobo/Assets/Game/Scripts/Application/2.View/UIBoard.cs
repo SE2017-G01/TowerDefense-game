@@ -90,6 +90,8 @@ public class UIBoard : View
     {
         Vector3 pos = e.WorldPos;
 
+        if(EventSystem.current.currentSelectedGameObject == null)
+
         if (onUISystem)
         {
             GameObject.Find("Canvas").transform.Find("UISystem").GetComponent<UISystem>().OnUISystemClick(sender, e);
@@ -151,11 +153,12 @@ public class UIBoard : View
         IsPlaying = true;
         Time.timeScale = lastSpeed;
     }
+    
 
     public void OnRoundStart(StartRoundArgs e)
     {
-        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + (e.RoundIndex + 1).ToString() : (e.RoundIndex + 1).ToString();
-        this.txtTotal.text = e.RoundTotal < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
+        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + e.RoundIndex.ToString() : e.RoundIndex.ToString();
+        this.txtTotal.text = e.RoundIndex < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
     }
 
     public void OnSystemClick()
