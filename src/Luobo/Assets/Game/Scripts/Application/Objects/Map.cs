@@ -72,8 +72,13 @@ public class Map : MonoBehaviour
     {
         set
         {
+            Debug.Log(value);
             SpriteRenderer render = transform.Find("Background").GetComponent<SpriteRenderer>();
-            StartCoroutine(Tools.LoadImage(value, render));
+            Texture2D texture = Resources.Load<Texture2D>(value);
+            render.sprite = Sprite.Create(
+                        texture,
+                        new Rect(0, 0, texture.width, texture.height),
+                        new Vector2(0.5f, 0.5f));
         }
     }
 
@@ -82,7 +87,11 @@ public class Map : MonoBehaviour
         set
         {
             SpriteRenderer render = transform.Find("Road").GetComponent<SpriteRenderer>();
-            StartCoroutine(Tools.LoadImage(value, render));
+            Texture2D texture = Resources.Load<Texture2D>(value);
+            render.sprite = Sprite.Create(
+                        texture,
+                        new Rect(0, 0, texture.width, texture.height),
+                        new Vector2(0.5f, 0.5f));
         }
     }
 
@@ -128,8 +137,8 @@ public class Map : MonoBehaviour
         //保存
         this.m_level = level;
         //加载图片
-        this.BackgroundImage = "file://" + Consts.MapDir + "/" + level.Background;
-        this.RoadImage = "file://" + Consts.MapDir + "/" + level.Road;
+        this.BackgroundImage = Consts.MapDir + level.Background;
+        this.RoadImage = Consts.MapDir + level.Road;
 
         //寻路点
         for (int i = 0; i < level.Path.Count; i++)

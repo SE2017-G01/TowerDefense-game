@@ -10,35 +10,37 @@ using System.Xml;
 public class Tools 
 {
     //读取关卡列表
-    public static List<FileInfo> GetLevelFiles()
+    public static List<XmlDocument> GetLevelFiles()
     {
-        string[] files = Directory.GetFiles(Consts.LevelDir, "*.xml");
-
-        List<FileInfo> list = new List<FileInfo>();
-        for (int i = 0; i < files.Length; i++)
+        List<XmlDocument> list = new List<XmlDocument>();
+        for (int i = 0; i < 3; i++)
         {
-            FileInfo file = new FileInfo(files[i]);
-            list.Add(file);
+            XmlDocument doc = new XmlDocument();
+            Debug.Log(Consts.LevelDir + "level" + i);
+            TextAsset text = Resources.Load<TextAsset>(Consts.LevelDir + "level" + i);
+            if (text == null)
+                Debug.LogError("关卡文件读取失败！！" + "level" + i);
+            else
+            {
+                using (MemoryStream stream = new MemoryStream(text.bytes))
+                {
+                    doc.Load(stream);
+                }
+                list.Add(doc);
+            }
         }
+
         return list;
     }
 
     //填充Level类数据
-    public static Level FillLevel(string fileName)
+    public static Level FillLevel(XmlDocument doc)
     {
-        Debug.Log("FillLevel:"+ fileName);
-        //    FileInfo file = new FileInfo(fileName);
-        //    StreamReader sr = new StreamReader(file.OpenRead(), Encoding.UTF8);
         var level = new Level();
-        FileInfo file = new FileInfo(fileName);
-        //FileInfo file = new FileInfo(Directory.GetFiles(Consts.LevelDir, fileName + ".xml")[0]);
-        StreamReader sr = new StreamReader(file.OpenRead(), Encoding.UTF8);
-
-        XmlDocument doc = new XmlDocument();
-        doc.Load(sr);
 
         level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
         level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
+        level.Background = doc.SelectSingleNode("/Level/Background").InnerText;
         level.CardImage = doc.SelectSingleNode("/Level/CardImage").InnerText;
         level.InitGold = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
 
@@ -59,7 +61,7 @@ public class Tools
         surroundingStr = surroundingStr.Replace("\r\n", "");
         surroundingStr = surroundingStr.Replace(" ", "");
         string[] surrounding = surroundingStr.Split(',');
-        int x = 0, y = 0;
+        int x = 0, y = 5;
         foreach (var s in surrounding)
         {
             if (dictionary.ContainsKey(s))
@@ -87,7 +89,7 @@ public class Tools
 
             if (x == 10)
             {
-                y++;
+                y--;
                 x = 0;
             }
             else
@@ -112,121 +114,8 @@ public class Tools
 
         #endregion
 
-        sr.Close();
-        sr.Dispose();
-
+        Debug.Log("FillLevel:" + level.Name);
         return level;
-    }
-    //public static void FillLevel(string fileName, ref Level level)
-    //{
-    //    FileInfo file = new FileInfo(fileName);
-    //    StreamReader sr = new StreamReader(file.OpenRead(), Encoding.UTF8);
-
-    //    XmlDocument doc = new XmlDocument();
-    //    doc.Load(sr);
-
-    //    level.Name = doc.SelectSingleNode("/Level/Name").InnerText;
-    //    level.CardImage = doc.SelectSingleNode("/Level/CardImage").InnerText;
-    //    level.Background = doc.SelectSingleNode("/Level/Background").InnerText;
-    //    level.Road = doc.SelectSingleNode("/Level/Road").InnerText;
-    //    level.InitScore = int.Parse(doc.SelectSingleNode("/Level/InitScore").InnerText);
-
-    //    XmlNodeList nodes;
-
-    //    nodes = doc.SelectNodes("/Level/Holder/Point");
-    //    for (int i = 0; i < nodes.Count; i++)
-    //    {
-    //        XmlNode node = nodes[i];
-    //        Point p = new Point(
-    //            int.Parse(node.Attributes["X"].Value),
-    //            int.Parse(node.Attributes["Y"].Value));
-
-    //        level.Holder.Add(p);
-    //    }
-
-    //    nodes = doc.SelectNodes("/Level/Path/Point");
-    //    for (int i = 0; i < nodes.Count; i++)
-    //    {
-    //        XmlNode node = nodes[i];
-
-    //        Point p = new Point(
-    //            int.Parse(node.Attributes["X"].Value),
-    //            int.Parse(node.Attributes["Y"].Value));
-
-    //        level.Path.Add(p);
-    //    }
-
-    //    nodes = doc.SelectNodes("/Level/Rounds/Round");
-    //    for (int i = 0; i < nodes.Count; i++)
-    //    {
-    //        XmlNode node = nodes[i];
-
-    //        Round r = new Round(
-    //                int.Parse(node.Attributes["Monster"].Value),
-    //                int.Parse(node.Attributes["Count"].Value)
-    //            );
-
-    //        level.Rounds.Add(r);
-    //    }
-
-    //    sr.Close();
-    //    sr.Dispose();
-    //}
-
-    //保存关卡
-
-    public static void SaveLevel(string fileName, Level level)
-    {
-        StringBuilder sb = new StringBuilder();
-        sb.AppendLine("<?xml version=\"1.0\" encoding=\"utf-8\"?>");
-        sb.AppendLine("<Level>");
-
-        sb.AppendLine(string.Format("<Name>{0}</Name>", level.Name));
-        sb.AppendLine(string.Format("<CardImage>{0}</CardImage>", level.CardImage));
-        sb.AppendLine(string.Format("<Background>{0}</Background>", level.Background));
-        sb.AppendLine(string.Format("<Road>{0}</Road>", level.Road));
-        sb.AppendLine(string.Format("<InitScore>{0}</InitScore>", level.InitGold));
-
-        sb.AppendLine("<Holder>");
-        for (int i = 0; i < level.Holder.Count; i++)
-        {
-            sb.AppendLine(string.Format("<Point X=\"{0}\" Y=\"{1}\"/>", level.Holder[i].X, level.Holder[i].Y));
-        }
-        sb.AppendLine("</Holder>");
-
-        sb.AppendLine("<Path>");
-        for (int i = 0; i < level.Path.Count; i++)
-        {
-            sb.AppendLine(string.Format("<Point X=\"{0}\" Y=\"{1}\"/>", level.Path[i].X, level.Path[i].Y));
-        }
-        sb.AppendLine("</Path>");
-
-        sb.AppendLine("<Rounds>");
-        for (int i = 0; i < level.Rounds.Count; i++)
-        {
-            sb.AppendLine(string.Format("<Round Monster=\"{0}\" Count=\"{1}\"/>", level.Rounds[i].Monster, level.Rounds[i].Count));
-        }
-        sb.AppendLine("</Rounds>");
-
-        sb.AppendLine("</Level>");
-
-        string content = sb.ToString();
-
-
-        XmlWriterSettings settings = new XmlWriterSettings();
-        settings.Indent = true;
-        settings.ConformanceLevel = ConformanceLevel.Auto;
-        settings.IndentChars = "\t";
-        settings.OmitXmlDeclaration = false;
-
-        XmlWriter xw =XmlWriter.Create(fileName,settings);
-        
-        XmlDocument doc = new XmlDocument();
-        doc.LoadXml(content);
-        doc.WriteTo(xw);
-
-        xw.Flush();
-        xw.Close();
     }
 
     //加载图片

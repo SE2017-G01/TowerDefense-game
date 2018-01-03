@@ -1,4 +1,4 @@
-WindowsStandalone
+Android
 b4f079c07acddbdec00216fdf89745e2 Assembly-CSharp.dll:.Fan
 8425473df9427d7af1ce466eede95a99 Assembly-CSharp.dll:.Sound
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp-firstpass.dll:.SampleInfo
@@ -8,7 +8,6 @@ b4f079c07acddbdec00216fdf89745e2 Assembly-CSharp.dll:.Fan
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SpawnIcon
 b53891e911d6bd788debf363434c680a Assembly-CSharp.dll:.Spawner
 c421ee22a14eeb0c0e1bf0e596a7731c Assembly-CSharp.dll:.UIComplete
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Test
 2fc6e19ec092dc77bde73592bc9c4199 Assembly-CSharp.dll:.Luobo
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Bottle
 ca13fa58beb8f1a4af52a47b7b92b7cf Assembly-CSharp.dll:.UISystem

@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Level>
   <Name>第一关：敌人来袭</Name>
-  <Background>bg1.png</Background>
-  <Road>plate.png</Road>
-	<CardImage>card1.png</CardImage>
+  <Background>bg1</Background>
+  <Road>plate</Road>
+	<CardImage>card1</CardImage>
   <InitScore>10</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
@@ -18,16 +18,6 @@
     *,*,*,*,*,*,*,*,*,*,*,
     *,*,*,*,*,*,*,*,*,*,*,
   </Holder>
-  <Path>
-    <Point X="1" Y="5"/>
-    <Point X="1" Y="2"/>
-    <Point X="4" Y="2"/>
-    <Point X="4" Y="3"/>
-    <Point X="7" Y="3"/>
-    <Point X="7" Y="2"/>
-    <Point X="10" Y="2"/>
-    <Point X="10" Y="5"/>
-  </Path>
   <Rounds>
     <Round Monster="0" Count="1"/>
     <Round Monster="0" Count="3"/>

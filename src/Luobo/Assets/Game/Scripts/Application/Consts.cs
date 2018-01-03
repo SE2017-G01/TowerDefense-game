@@ -25,9 +25,9 @@ public static class Consts
 
 
     //目录
-    public static readonly string LevelDir = Application.dataPath + @"\Game\Resources\Res\Levels";
-    public static readonly string MapDir = Application.dataPath + @"\Game\Resources\Res\Maps";
-    public static readonly string CardDir = Application.dataPath + @"\Game\Resources\Res\Cards";
+    public static readonly string LevelDir = "Res/Levels/";
+    public static readonly string MapDir = "Res/Maps/";
+    public static readonly string CardDir = "Res/Cards/";
 
     //参数
     public const string GameProgress = "GameProgress";

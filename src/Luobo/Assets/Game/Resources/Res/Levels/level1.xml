@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Level>
   <Name>第一关：敌人来袭</Name>
-  <Background>bg1.png</Background>
-  <Road>plate.png</Road>
-  <CardImage>card2.png</CardImage>
+  <Background>bg1</Background>
+  <Road>plate</Road>
+  <CardImage>card2</CardImage>
   <InitScore>10</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
