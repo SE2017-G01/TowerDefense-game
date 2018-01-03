@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Xml;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
@@ -90,11 +91,11 @@ public class GameModel : Model
     public void Initialize()
     {
         //构建Level集合
-        List<FileInfo> files = Tools.GetLevelFiles();
+        List<XmlDocument> files = Tools.GetLevelFiles();
         List<Level> levels = new List<Level>();
         for (int i = 0; i < files.Count; i++)
         {
-            Level level = Tools.FillLevel(files[i].FullName);
+            Level level = Tools.FillLevel(files[i]);
             if (level.EndPoint == null)
             {
                 Debug.LogWarning("GameModel：EndPoint为空！！" + level.Holder.Count + " " + level.Rounds.Count);

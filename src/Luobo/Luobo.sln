@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luobo", "Luobo.csproj", "{1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luobo.Plugins", "Luobo.Plugins.csproj", "{DE9BB4E1-A097-054E-65C4-F47D077D9F49}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Luobo.Editor", "Luobo.Editor.csproj", "{1848FB0E-C185-354A-E098-54E7088144EE}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnit.Tests1", "..\NUnit.Tests1\NUnit.Tests1.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Global
@@ -23,10 +21,6 @@ Global
 		{DE9BB4E1-A097-054E-65C4-F47D077D9F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE9BB4E1-A097-054E-65C4-F47D077D9F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9BB4E1-A097-054E-65C4-F47D077D9F49}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1848FB0E-C185-354A-E098-54E7088144EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1848FB0E-C185-354A-E098-54E7088144EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1848FB0E-C185-354A-E098-54E7088144EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1848FB0E-C185-354A-E098-54E7088144EE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EDF4429-251A-416D-BB68-93F227191BCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
