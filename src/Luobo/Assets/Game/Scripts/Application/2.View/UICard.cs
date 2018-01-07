@@ -41,8 +41,14 @@ public class UICard : MonoBehaviour, IPointerDownHandler
         m_Card = card;
 
         //加载图片
-        string cardFile = "file://" + Consts.CardDir + "\\" + m_Card.CardImage;
-        StartCoroutine(Tools.LoadImage(cardFile, ImgCard));
+        //string cardFile = "file://" + Consts.CardDir + "\\" + m_Card.CardImage;
+        //StartCoroutine(Tools.LoadImage(cardFile, ImgCard));
+        Debug.Log(Consts.CardDir + m_Card.CardImage);
+        Texture2D texture = Resources.Load<Texture2D>(Consts.CardDir + m_Card.CardImage);
+        ImgCard.sprite = Sprite.Create(
+                    texture,
+                    new Rect(0, 0, texture.width, texture.height),
+                    new Vector2(0.5f, 0.5f));
 
         //是否锁定
         ImgLock.gameObject.SetActive(card.IsLocked);

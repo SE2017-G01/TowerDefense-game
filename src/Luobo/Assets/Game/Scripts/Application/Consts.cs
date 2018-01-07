@@ -7,10 +7,7 @@ using UnityEngine;
 public static class Consts
 {
 
-    /// <summary>
-    /// PXT
-    /// </summary>
-    //Point
+
     public const int PointTypePlate = 0;
     public const int PointTypeSurrounding = 1;
     public const int PointTypeTower = 2;
@@ -27,14 +24,10 @@ public static class Consts
     public const int MonsterStateDying = -1;
 
 
-    /// <summary>
-    /// Others
-    /// </summary>
-
     //目录
-    public static readonly string LevelDir = Application.dataPath + @"\Game\Resources\Res\Levels";
-    public static readonly string MapDir = Application.dataPath + @"\Game\Resources\Res\Maps";
-    public static readonly string CardDir = Application.dataPath + @"\Game\Resources\Res\Cards";
+    public static readonly string LevelDir = "Res/Levels/";
+    public static readonly string MapDir = "Res/Maps/";
+    public static readonly string CardDir = "Res/Cards/";
 
     //参数
     public const string GameProgress = "GameProgress";

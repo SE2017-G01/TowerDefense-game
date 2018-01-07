@@ -70,6 +70,8 @@ public class RoundModel : Model
             //设置回合
             m_RoundIndex = i;
 
+            Debug.Log("RoundModel:RunRound!m_RoundIndex:" + m_RoundIndex);
+
             //回合开始事件
             StartRoundArgs e = new StartRoundArgs();
             e.RoundIndex = m_RoundIndex;
@@ -112,13 +114,5 @@ public class RoundModel : Model
     #endregion
 
     #region 帮助方法
-    //清除本次游戏信息
-    public void ClearCurrentProgress()
-    {
-        m_Rounds = new List<Round>();//该关卡所有的出怪信息
-        m_RoundIndex = -1; //当前回合的索引
-        m_AllRoundsComplete = false; //是否所有怪物都出来了
-        LoadLevel(MVC.GetModel<GameModel>().PlayLevel);
-    }
     #endregion
 }
