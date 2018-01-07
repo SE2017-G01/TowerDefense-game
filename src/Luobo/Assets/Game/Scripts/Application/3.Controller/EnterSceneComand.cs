@@ -18,6 +18,7 @@ class EnterSceneComand : Controller
                 break;
             case 1://Start
                 RegisterView(GameObject.Find("UIStart").GetComponent<UIStart>());
+                RegisterView(GameObject.Find("UIStart").transform.Find("UIInfo").GetComponent<UIInfo>());
                 break;
             case 2://Select
                 RegisterView(GameObject.Find("UISelect").GetComponent<UISelect>());

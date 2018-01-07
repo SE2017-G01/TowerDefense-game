@@ -34,6 +34,13 @@ public class Spawner : View
         m_Luobo = luobo;
     }
 
+    //创建起点
+    void SpawnStart(Vector3 position)
+    {
+        GameObject go = Game.Instance.ObjectPool.Spawn("Start");
+        go.transform.position = position;
+    }
+
     //创建怪物
     void SpawnMonster(int MonsterID)
     {
@@ -87,9 +94,6 @@ public class Spawner : View
         GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold += monster.Price;
         Game.Instance.ObjectPool.Unspawn(monster.gameObject);
        
-        //UIBoard.Score++;
-        // UIBoard.m_Score++;
-        // UIBoard.txtScore.text = UIBoard.m_Score.ToString();
         //胜利条件判断
         RoundModel rm = GetModel<RoundModel>();
         GameModel gm = GetModel<GameModel>();
@@ -196,9 +200,12 @@ public class Spawner : View
                     m_Map.LoadLevel(gModel.PlayLevel);
 
                     //加载萝卜
-                    var index = m_Map.lastx + m_Map.lasty * 11;
                     Vector3 luoboPos = m_Map.GetPosition(m_Map.GetTile(m_Map.lastx, m_Map.lasty));
                     SpawnLuobo(luoboPos);
+
+                    //加载起点
+                    Vector3 startPos = m_Map.GetPosition(m_Map.GetTile(m_Map.startx, m_Map.starty));
+                    SpawnStart(startPos);
                 }
                 break;
             case Consts.E_SpawnMonster:
