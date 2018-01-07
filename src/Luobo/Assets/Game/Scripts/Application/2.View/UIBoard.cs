@@ -80,7 +80,6 @@ public class UIBoard : View
         btnSpeed1.gameObject.SetActive(true);
         btnSpeed2.gameObject.SetActive(false);
         Time.timeScale = 1.0f;
-        //this.txtTotal.text = MVC.GetModel<RoundModel>().RoundTotal.ToString();
     }
     #endregion
 
