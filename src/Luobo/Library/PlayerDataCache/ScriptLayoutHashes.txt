@@ -1,4 +1,4 @@
-Android
+WindowsStandalone
 b4f079c07acddbdec00216fdf89745e2 Assembly-CSharp.dll:.Fan
 8425473df9427d7af1ce466eede95a99 Assembly-CSharp.dll:.Sound
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
