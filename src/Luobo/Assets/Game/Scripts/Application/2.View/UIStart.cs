@@ -15,7 +15,7 @@ public class UIStart : View
 
     public void OnBtnAbout()
     {
-        Game.Instance.LoadScene(2);
+        MVC.GetView<UIInfo>().Show();
     }
 
     public void OnBtnQuit()

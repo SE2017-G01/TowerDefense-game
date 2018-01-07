@@ -41,6 +41,7 @@ public static class Consts
 
     //View
     public const string V_Start = "V_Start";
+    public const string V_Info = "V_Info";
     public const string V_Select = "V_Select";
     public const string V_Board = "V_Board";
     public const string V_CountDown = "V_CountDown";
