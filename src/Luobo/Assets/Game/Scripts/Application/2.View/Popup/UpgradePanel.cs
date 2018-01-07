@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
 public class UpgradePanel : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UpgradePanel : MonoBehaviour
     #region 字段
     UpgradeIcon m_UpgradeIcon;
     SellIcon m_SellIcon;
+    TextIcon m_TextIcon;
     #endregion
 
     #region 属性
