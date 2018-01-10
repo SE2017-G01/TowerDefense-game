@@ -228,6 +228,7 @@
     <None Include="Assets\Game\Resources\Res\Levels\level0.xml" />
     <None Include="Assets\Game\Resources\Res\Levels\level1.xml" />
     <None Include="Assets\Game\Resources\Res\Levels\level2.xml" />
+    <None Include="Assets\Game\Resources\Res\Levels\level3.xml" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

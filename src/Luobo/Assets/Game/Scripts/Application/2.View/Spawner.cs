@@ -46,12 +46,17 @@ public class Spawner : View
     {
         Debug.Log("Spawner:SpawnMonster");
         string prefabName = "Monster" + MonsterID;
-        GameObject go = Game.Instance.ObjectPool.Spawn(prefabName);
-        Monster monster = go.GetComponent<Monster>();
-        monster.Reached += monster_Reached;
-        monster.HpChanged += monster_HpChanged;
-        monster.Dead += monster_Dead;
-        monster.Load(m_Map.Path);
+        
+        for (int i = 0; i < m_Map.StartPoint.Count; i++)
+        {
+            GameObject go = Game.Instance.ObjectPool.Spawn(prefabName);
+            Monster monster = go.GetComponent<Monster>();
+            monster.Reached += monster_Reached;
+            monster.HpChanged += monster_HpChanged;
+            monster.Dead += monster_Dead;
+            Debug.Log("!!!!" + m_Map.StartPoint[i]);
+            monster.Load(m_Map.StartPoint[i]);
+        }
     }
 
     void SpawnTower(Vector3 position, int towerID)
@@ -200,12 +205,17 @@ public class Spawner : View
                     m_Map.LoadLevel(gModel.PlayLevel);
 
                     //加载萝卜
-                    Vector3 luoboPos = m_Map.GetPosition(m_Map.GetTile(m_Map.lastx, m_Map.lasty));
-                    SpawnLuobo(luoboPos);
-
-                    //加载起点
-                    Vector3 startPos = m_Map.GetPosition(m_Map.GetTile(m_Map.startx, m_Map.starty));
-                    SpawnStart(startPos);
+                    for (int i = 0; i < m_Map.EndPoint.Count; i++)
+                    {
+                        Vector3 luoboPos = m_Map.GetPosition(m_Map.GetTile(m_Map.EndPoint[i]));
+                        SpawnLuobo(luoboPos);
+                    }
+                    for (int i = 0; i < m_Map.StartPoint.Count; i++)
+                    {
+                        //加载起点
+                        Vector3 startPos = m_Map.GetPosition(m_Map.GetTile(m_Map.StartPoint[i]));
+                        SpawnStart(startPos);
+                    }
                 }
                 break;
             case Consts.E_SpawnMonster:

@@ -13,7 +13,7 @@ public class Tools
     public static List<XmlDocument> GetLevelFiles()
     {
         List<XmlDocument> list = new List<XmlDocument>();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 4; i++)
         {
             XmlDocument doc = new XmlDocument();
             Debug.Log(Consts.LevelDir + "level" + i);
@@ -29,7 +29,7 @@ public class Tools
                 list.Add(doc);
             }
         }
-
+  
         return list;
     }
 
@@ -72,10 +72,10 @@ public class Tools
                         level.Holder.Add(new Point(x, y));
                         break;
                     case Consts.Start:
-                        level.StartPoint = new Point(x, y);
+                        level.StartPoint.Add(new Point(x, y));
                         break;
                     case Consts.End:
-                        level.EndPoint = new Point(x, y);
+                        level.EndPoint.Add(new Point(x, y));
                         break;
                     case "\r":
                     case "\n":

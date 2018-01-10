@@ -10,8 +10,8 @@ public class Level
     public string Road;//路径
     public string Background;//背景
     public float MonsterGap;//怪兽间距 
-    public Point StartPoint;//起点
-    public Point EndPoint;//终点
+    public List<Point> StartPoint = new List<Point>();
+    public List<Point> EndPoint = new List<Point>();
     public int InitGold;//金币
 
     //炮塔可放置的位置
