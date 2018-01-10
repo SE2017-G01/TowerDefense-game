@@ -27,7 +27,6 @@ public class Monster : Role
     public MonsterType MonsterType = MonsterType.Monster0;//怪物类型
     float m_MoveSpeed;//移动速度（米/秒）
     Vector3[] m_Path = null; //路径拐点
-    int m_PointIndex = -1; //当前拐点索引
     bool m_IsReached = false;//是否到达终点
     private Vector3 Next ;
     MonsterInfo info;
@@ -49,37 +48,16 @@ public class Monster : Role
 
     #region 方法
 
-    public void Load(Vector3[] path)
+    public void Load(Point Start)
     {
-        Debug.Log("Monster:Load");
-        m_Path = path;
-        MoveNext();
+        Debug.Log("Monster:Load"+Start.X+Start.Y);
+        Tile now = Spawner.m_Map.GetTile(Start);
+        MoveTo(Spawner.m_Map.GetPosition(now));
+        Next = Spawner.m_Map.GetPosition(Getbest(now));
     }
-
-    bool HasNext()
-    {
-        return (m_PointIndex + 1) < (m_Path.Length - 1);
-    }
-
     void MoveTo(Vector3 position)
     {
         transform.position = position;
-    }
-
-    void MoveNext()
-    {
-        if (m_PointIndex == -1)
-        {
-            //刚刚出来，那就放置到起点位置
-            m_PointIndex = 0;
-            Debug.Log("Monster:MoveNext:" + Spawner.m_Map.start.ToString());
-            MoveTo(Spawner.m_Map.GetPosition(Spawner.m_Map.start));
-        }
-        else
-        {
-            //不然就指定下一个目标位置
-            m_PointIndex++;
-        }
     }
     #endregion
 
@@ -118,14 +96,10 @@ public class Monster : Role
         //目标位置
         //Vector3 dest = m_Path[m_PointIndex + 1];
         Tile now = Spawner.m_Map.GetTile(pos);
-
-        if (m_PointIndex==0)
-            Next = Spawner.m_Map.GetPosition(Getbest(now));
-        if ((now.X == Spawner.m_Map.lastx) && (now.Y == Spawner.m_Map.lasty))
-            //到达终点
+        for (int i=0;i< Spawner.m_Map.EndPoint.Count;i++)
+        if ((now.X == Spawner.m_Map.EndPoint[i].X) && (now.Y == Spawner.m_Map.EndPoint[i].Y))
         {
             m_IsReached = true;
-
             //触发到达终点事件
             if (Reached != null)
                 Reached(this);
@@ -140,7 +114,7 @@ public class Monster : Role
             Next = Spawner.m_Map.GetPosition(Getbest(now));
             if (Spawner.m_Map.GetTile(Next) == now) throw new IndexOutOfRangeException("???");
            
-    }
+        }
         else
         {
             //移动的单位方向
@@ -169,7 +143,6 @@ public class Monster : Role
         base.OnUnspawn();
 
         this.m_Path = null;
-        this.m_PointIndex = -1;
         this.m_IsReached = false;
         this.m_MoveSpeed = 0;
         this.Reached = null;
