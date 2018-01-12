@@ -4,7 +4,7 @@
   <Background>bg1</Background>
   <Road>plate</Road>
 	<CardImage>card5</CardImage>
-  <InitScore>30000</InitScore>
+  <InitScore>3000</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
     <Item entity="Start" name="s"/>
@@ -16,11 +16,11 @@
     s,*,*,*,*,*,*,*,*,*,s,
     s,*,*,*,*,e,*,*,*,*,s,
     s,*,*,*,*,*,*,*,*,*,s,
-    s,s,s,s,s,*,s,s,s,s,s
+    s,s,s,s,*,*,*,s,s,s,s
   </Holder>
   <Rounds>
     <Round Monster="0" Count="1"/>
-    <Round Monster="0" Count="1"/>
-    <Round Monster="0" Count="1"/>
+    <Round Monster="3" Count="1"/>
+    <Round Monster="8" Count="1"/>
   </Rounds>
 </Level>

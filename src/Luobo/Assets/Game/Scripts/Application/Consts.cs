@@ -83,5 +83,8 @@ public enum MonsterType
     Monster2,
     Monster3,
     Monster4,
-    Monster5
+    Monster5,
+    Monster6,
+    Monster7,
+    Monster8,
 }
