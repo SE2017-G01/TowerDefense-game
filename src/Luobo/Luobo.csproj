@@ -13,11 +13,13 @@
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
-    <CompilerResponseFile></CompilerResponseFile>
+    <CompilerResponseFile>
+    </CompilerResponseFile>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>2017.2.0f3</UnityVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <LangVersion>4</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -233,6 +235,15 @@
   <ItemGroup>
     <Compile Include="Assets\Game\Scripts\Application\1.Model\GameModel.cs" />
     <Compile Include="Assets\Game\Scripts\Application\1.Model\RoundModel.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\CountDownCompleteCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\EndLevelCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\EnterSceneComand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\ExitSceneCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\SellTowerCommand .cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\StartLevelCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\StartRoundCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\StartUpCommand.cs" />
+    <Compile Include="Assets\Game\Scripts\Application\2.View\3.Controller\UpgradeTowerCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\2.View\Popup\SellIcon.cs" />
     <Compile Include="Assets\Game\Scripts\Application\2.View\Popup\SpawnIcon.cs" />
     <Compile Include="Assets\Game\Scripts\Application\2.View\Popup\SpawnPanel.cs" />
@@ -252,15 +263,6 @@
     <Compile Include="Assets\Game\Scripts\Application\2.View\UIStart.cs" />
     <Compile Include="Assets\Game\Scripts\Application\2.View\UISystem.cs" />
     <Compile Include="Assets\Game\Scripts\Application\2.View\UIWin.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\CountDownCompleteCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\EndLevelCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\EnterSceneComand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\ExitSceneCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\SellTowerCommand .cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartLevelCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartRoundCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\StartUpCommand.cs" />
-    <Compile Include="Assets\Game\Scripts\Application\3.Controller\UpgradeTowerCommand.cs" />
     <Compile Include="Assets\Game\Scripts\Application\Args\EndLevelArgs.cs" />
     <Compile Include="Assets\Game\Scripts\Application\Args\SceneArgs.cs" />
     <Compile Include="Assets\Game\Scripts\Application\Args\SellTowerArgs.cs" />
@@ -318,6 +320,9 @@
     <None Include="Assets\Game\Resources\Res\Levels\level2.xml" />
     <None Include="Assets\Game\Resources\Res\Levels\level3.xml" />
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Game\Resources\Res\Levels\level4.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
