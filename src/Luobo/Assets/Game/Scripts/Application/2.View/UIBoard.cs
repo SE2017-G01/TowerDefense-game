@@ -156,7 +156,7 @@ public class UIBoard : View
 
     public void OnRoundStart(StartRoundArgs e)
     {
-        this.txtCurrent.text = e.RoundIndex < 10 ? "0" + e.RoundIndex.ToString() : e.RoundIndex.ToString();
+        this.txtCurrent.text = e.RoundIndex < 10 ? "0 " + e.RoundIndex.ToString() : (e.RoundIndex / 10 + " " + e.RoundIndex % 10);
         this.txtTotal.text = e.RoundIndex < 10 ? "0" + e.RoundTotal.ToString() : e.RoundTotal.ToString();
     }
 

@@ -1,16 +1,4 @@
 sceneSetups:
-<<<<<<< HEAD
-<<<<<<< HEAD
-- path: Assets/Game/Scenes/0.Init.unity
-=======
-<<<<<<< HEAD
 - path: Assets/Game/Scenes/3.Level.unity
-=======
-- path: Assets/Game/Scenes/1.Start.unity
->>>>>>> dev
->>>>>>> dev
-=======
-- path: Assets/Game/Scenes/3.Level.unity
->>>>>>> dev
   isLoaded: 1
   isActive: 1
