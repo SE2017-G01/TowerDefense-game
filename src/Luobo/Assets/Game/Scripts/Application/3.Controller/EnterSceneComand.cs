@@ -34,6 +34,7 @@ class EnterSceneComand : Controller
                 break;
             case 4://Complete
                 RegisterView(GameObject.Find("UIComplete").GetComponent<UIComplete>());
+                RegisterView(GameObject.Find("UIComplete").transform.Find("UIClear").GetComponent<UIClear>());
                 break;
                 break;
             default:

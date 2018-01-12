@@ -127,7 +127,7 @@ b53891e911d6bd788debf363434c680a Assembly-CSharp.dll:.UIStart
 2af4d8548ad0bf0a27fffab6a6b1e97c Assembly-CSharp.dll:.TowerPopup
 a630091abb67c63973c0ea9796d3c22c Assembly-CSharp.dll:.Game
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UpgradeIcon
-430d6377215fbaa7e2ed38d14e80952b Assembly-CSharp.dll:.Map
+285d19840a7e34778b5a566c6cfb925f Assembly-CSharp.dll:.Map
 02ac2f6ba508f23ca38a3d3a090141b7 Assembly-CSharp.dll:.BallBullet
 6d0b433525d531cb8101bb55f1a74d35 Assembly-CSharp.dll:.Bird
 cc78ef3a8e5ac466c2a7a29893dc428a Assembly-CSharp.dll:.Cloud
@@ -171,3 +171,4 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 af1a63fbf50d949dddce403005c4887b Assembly-CSharp.dll:.UIWin
 3265e300797785aa4b30bbeb5d5a169b Assembly-CSharp.dll:.UISelect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StaticData
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.U

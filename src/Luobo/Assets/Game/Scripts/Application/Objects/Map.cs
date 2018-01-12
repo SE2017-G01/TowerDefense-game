@@ -162,23 +162,8 @@ public class Map : MonoBehaviour
         }
         else
         {
-<<<<<<< HEAD
-            lastx = level.EndPoint.X;
-            lasty = level.EndPoint.Y;
-            startx = level.StartPoint.X;
-            starty = level.StartPoint.Y;
-        }
-        start.X = startx;
-        start.Y = starty;
-        last.X = lastx;
-        last.Y = lasty;
-        //炮塔点
-        for (int x = 0; x < MAXX; x++)
-            for (int y = 0; y < MAXY; y++)
-=======
             Debug.LogWarning("startpoints" + level.StartPoint.Count);
             for (int i = 0; i < level.StartPoint.Count; i++)
->>>>>>> dev
             {
                 StartPoint.Add(level.StartPoint[i]);
                 GetTile(level.StartPoint[i]).CanHold = false;
@@ -402,18 +387,10 @@ public class Map : MonoBehaviour
         //Queue<Tile> g;
         if (!Check()) return false;
         for (int x = 0; x < MAXX; x++)
-<<<<<<< HEAD
-            for (int y = 0; y < MAXY; y++)
-            {
-                GetTile(x, y).distance = 100;
-            }
-        List<Tile> queue = new List<Tile>();
-=======
         for (int y = 0; y < MAXY; y++)
         {
             GetTile(x, y).distance = 100;
         }
->>>>>>> dev
         Tile[] g = new Tile[100];
         int l = 0;
         int r = 0;
@@ -444,15 +421,6 @@ public class Map : MonoBehaviour
                 }
             }
         }
-<<<<<<< HEAD
-        if (GetTile(startx, starty).distance >= 100) return false;
-        for (int x = 0; x < MAXX; x++)
-            for (int y = 0; y < MAXY; y++)
-                if (GetTile(x, y).Data == null)
-                    if (GetTile(x, y).distance == 100)
-                        return false;
-=======
->>>>>>> dev
         return true;
     }
 
