@@ -51,8 +51,9 @@ public static class Consts
     public const string V_Complete = "V_Complete";
     public const string V_Spanwner = "V_Spanwner";
     public const string V_TowerPopup = "V_TowerPopup";
-    
-    
+    public const string V_Clear = "V_Clear";
+
+
     //Controller
     public const string E_StartUp = "E_StartUp";
 

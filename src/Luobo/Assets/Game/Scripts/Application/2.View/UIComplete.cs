@@ -49,6 +49,7 @@ public class UIComplete : View
     {
         GameModel gm = GetModel<GameModel>();
         gm.ClearProgress();
+        MVC.GetView<UIClear>().Show();
     }
     #endregion
 

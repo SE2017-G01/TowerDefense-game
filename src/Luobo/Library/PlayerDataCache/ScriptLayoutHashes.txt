@@ -1,4 +1,4 @@
-WindowsStandalone
+Android
 b4f079c07acddbdec00216fdf89745e2 Assembly-CSharp.dll:.Fan
 8425473df9427d7af1ce466eede95a99 Assembly-CSharp.dll:.Sound
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -112,6 +112,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 c421ee22a14eeb0c0e1bf0e596a7731c Assembly-CSharp.dll:.UIComplete
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 2fc6e19ec092dc77bde73592bc9c4199 Assembly-CSharp.dll:.Luobo
+c88bbf49960ed10f6398d2822ac59b84 Assembly-CSharp.dll:.CameraFull
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Bottle
 ca13fa58beb8f1a4af52a47b7b92b7cf Assembly-CSharp.dll:.UISystem
 dc07d7ad69b399a46e92c483bf1c04ca UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
@@ -122,10 +123,13 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 b53891e911d6bd788debf363434c680a Assembly-CSharp.dll:.UIStart
+50667894c33b478dc38ae949114bb1e8 Assembly-CSharp.dll:AppStoresSupport.AppStoreSettings
 2af4d8548ad0bf0a27fffab6a6b1e97c Assembly-CSharp.dll:.TowerPopup
 a630091abb67c63973c0ea9796d3c22c Assembly-CSharp.dll:.Game
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UpgradeIcon
-430d6377215fbaa7e2ed38d14e80952b Assembly-CSharp.dll:.Map
+285d19840a7e34778b5a566c6cfb925f Assembly-CSharp.dll:.Map
+05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.CallbackExecutor
+05524b8f659e7bfe5756d1335fec24ba UnityEngine.Advertisements.dll:UnityEngine.Advertisements.Editor.Placeholder
 02ac2f6ba508f23ca38a3d3a090141b7 Assembly-CSharp.dll:.BallBullet
 6d0b433525d531cb8101bb55f1a74d35 Assembly-CSharp.dll:.Bird
 cc78ef3a8e5ac466c2a7a29893dc428a Assembly-CSharp.dll:.Cloud
@@ -144,11 +148,13 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 3f32f08a64daf40b09ed864d96fe3840 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 73843688b51256aed059f049c540bca8 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+6ddbe599e18a17215ba76ad829255bf2 Assembly-CSharp.dll:.UIInfo
 91e91760154285e0bbc55b0947f68d12 Assembly-CSharp.dll:.FanBullet
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.PlayModeRunnerCallback
 2a56361227def9f56c2cf57a88b32f4d UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.PlaymodeTestsController
 64eb32cc721b1cc68a91ed57461e188c UnityEngine.TestRunner.dll:UnityEngine.TestTools.TestRunner.Callbacks.RemoteTestResultSender
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
+05524b8f659e7bfe5756d1335fec24ba UnityStore.dll:UnityEngine.Store.MainThreadDispatcher
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -165,7 +171,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 8425473df9427d7af1ce466eede95a99 Assembly-CSharp.dll:.ObjectPool
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.UpgradePanel
 af1a63fbf50d949dddce403005c4887b Assembly-CSharp.dll:.UIWin
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.U
+b53891e911d6bd788debf363434c680a Assembly-CSharp.dll:.UIClear
 3265e300797785aa4b30bbeb5d5a169b Assembly-CSharp.dll:.UISelect
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StaticData
-6ddbe599e18a17215ba76ad829255bf2 Assembly-CSharp.dll:.UIInfo
-c88bbf49960ed10f6398d2822ac59b84 Assembly-CSharp.dll:.CameraFull
