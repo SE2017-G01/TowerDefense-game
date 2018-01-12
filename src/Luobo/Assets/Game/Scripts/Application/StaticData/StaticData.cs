@@ -25,18 +25,18 @@ public class StaticData : Singleton<StaticData>
 
     void InitMonsters()
     {
-        m_Monsters.Add(0, new MonsterInfo() { ID = 0, Hp = 5, MoveSpeed = 1f, Price = 1 });
-        m_Monsters.Add(1, new MonsterInfo() { ID = 1, Hp = 5, MoveSpeed = 1f, Price = 2 });
-        m_Monsters.Add(2, new MonsterInfo() { ID = 2, Hp = 15, MoveSpeed = 2f, Price = 5 });
-        m_Monsters.Add(3, new MonsterInfo() { ID = 3, Hp = 20, MoveSpeed = 2f, Price = 10 });
-        m_Monsters.Add(4, new MonsterInfo() { ID = 4, Hp = 20, MoveSpeed = 2f, Price = 15 });
-        m_Monsters.Add(5, new MonsterInfo() { ID = 5, Hp = 100, MoveSpeed = 0.5f, Price = 20 });
+        m_Monsters.Add(0, new MonsterInfo() { ID = 0, Hp = 5, MoveSpeed = 1f, Price = 20 });
+        m_Monsters.Add(1, new MonsterInfo() { ID = 1, Hp = 5, MoveSpeed = 1f, Price = 40 });
+        m_Monsters.Add(2, new MonsterInfo() { ID = 2, Hp = 15, MoveSpeed = 2f, Price = 100 });
+        m_Monsters.Add(3, new MonsterInfo() { ID = 3, Hp = 20, MoveSpeed = 2f, Price = 200 });
+        m_Monsters.Add(4, new MonsterInfo() { ID = 4, Hp = 20, MoveSpeed = 2f, Price = 300 });
+        m_Monsters.Add(5, new MonsterInfo() { ID = 5, Hp = 100, MoveSpeed = 0.5f, Price = 600 });
     }
 
     void InitTowers()
     {
-        m_Towers.Add(0, new TowerInfo() { ID = 0, PrefabName = "Bottle", NormalIcon = "Bottle/Bottle01", DisabledIcon = "Bottle/Bottle00", MaxLevel = 3, BasePrice = 1, ShotRate = 2,    GuardRange = 3f, UseBulletID = 0 });
-        m_Towers.Add(1, new TowerInfo() { ID = 1, PrefabName = "Fan",    NormalIcon = "Fan/Fan01",       DisabledIcon = "Fan/Fan00",       MaxLevel = 3, BasePrice = 2, ShotRate = 0.3f, GuardRange = 3f, UseBulletID = 1 });
+        m_Towers.Add(0, new TowerInfo() { ID = 0, PrefabName = "Bottle", NormalIcon = "Bottle/Bottle01", DisabledIcon = "Bottle/Bottle00", MaxLevel = 3, BasePrice = 100, ShotRate = 2,    GuardRange = 3f, UseBulletID = 0 });
+        m_Towers.Add(1, new TowerInfo() { ID = 1, PrefabName = "Fan",    NormalIcon = "Fan/Fan01",       DisabledIcon = "Fan/Fan00",       MaxLevel = 3, BasePrice = 180, ShotRate = 0.3f, GuardRange = 3f, UseBulletID = 1 });
     }
 
     void InitBullets()

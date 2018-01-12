@@ -49,9 +49,8 @@ public class Map : MonoBehaviour
     #region 字段
     float MapWidth;//地图宽
     float MapHeight;//地图高
-    public int lastx, lasty, startx, starty;
-    public Tile last = new Tile(0, 0);
-    public Tile start = new Tile(0, 0);
+    public List<Point> StartPoint = new List<Point>();
+    public List<Point> EndPoint = new List<Point>();
     float TileWidth;//格子宽
     float TileHeight;//格子高
 
@@ -141,32 +140,29 @@ public class Map : MonoBehaviour
         this.RoadImage = Consts.MapDir + level.Road;
 
         //寻路点
-        for (int i = 0; i < level.Path.Count; i++)
+       
+        //炮塔点
+        for (int x = 0; x < MAXX; x++)
+        for (int y = 0; y < MAXY; y++)
         {
-            Point p = level.Path[i];
-            Tile t = GetTile(p.X, p.Y);
-            m_road.Add(t);
+            Tile t = GetTile(x, y);
+            t.CanHold = true;
+            t.distance = 999;
+            t.Data = null;
         }
-
         //起点和终点的加载
         if (level == null)
         {
-            lastx = 10;
-            lasty = 3;
-            startx = 1;
-            starty = 4;
+           
             Debug.LogWarning("Map.cs：Level为空！！");
         }
         else if (level.StartPoint == null)
         {
-            lastx = 10;
-            lasty = 3;
-            startx = 1;
-            starty = 4;
             Debug.LogWarning("Map.cs：StartPoint为空！！" + level.Holder.Count + " " + level.Rounds.Count);
         }
         else
         {
+<<<<<<< HEAD
             lastx = level.EndPoint.X;
             lasty = level.EndPoint.Y;
             startx = level.StartPoint.X;
@@ -179,16 +175,21 @@ public class Map : MonoBehaviour
         //炮塔点
         for (int x = 0; x < MAXX; x++)
             for (int y = 0; y < MAXY; y++)
+=======
+            Debug.LogWarning("startpoints" + level.StartPoint.Count);
+            for (int i = 0; i < level.StartPoint.Count; i++)
+>>>>>>> dev
             {
-                Tile t = GetTile(x, y);
-                t.CanHold = true;
-                t.distance = 999;
-                t.Data = null;
+                StartPoint.Add(level.StartPoint[i]);
+                GetTile(level.StartPoint[i]).CanHold = false;
             }
-        GetTile(lastx, lasty).CanHold = false;
-        GetTile(startx, starty).CanHold = false;
-
-
+            for (int i = 0; i < level.EndPoint.Count; i++)
+            { 
+                EndPoint.Add(level.EndPoint[i]);
+                GetTile(level.EndPoint[i]).CanHold = false;
+                GetTile(level.EndPoint[i]).Data = "luobo";
+            }
+        }
         CalcShortPath();
     }
 
@@ -355,21 +356,73 @@ public class Map : MonoBehaviour
     #endregion
 
     #region 帮助方法
-
+    Boolean Check()
+    {
+        for (int i = 0; i < EndPoint.Count; i++)
+        {
+            for (int x = 0; x < MAXX; x++)
+                for (int y = 0; y < MAXY; y++)
+                    GetTile(x, y).distance = 100;
+            Tile[] g = new Tile[100];
+            int l = 0;
+            int r = 1;
+            g[r] = GetTile(EndPoint[i]);
+            g[r].distance = 0;
+            while (l < r)
+            {
+                Tile t = g[++l];
+                int x = t.X;
+                int y = t.Y;
+                for (int k = 0; k < 4; k++)
+                {
+                    int xx = x + dir[k, 0];
+                    int yy = y + dir[k, 1];
+                    if ((xx >= 0) && (xx < MAXX) && (yy >= 0) && (yy < MAXY))
+                    {
+                        Tile e = GetTile(xx, yy);
+                        if (e.Data == null)
+                            if (t.distance + 1 < e.distance)
+                            {
+                                e.distance = t.distance + 1;
+                                g[++r] = e;
+                            }
+                    }
+                }
+            }
+            for (int x = 0; x < MAXX; x++)
+                for (int y = 0; y < MAXY; y++)
+                    if (GetTile(x, y).Data == null)
+                        if (GetTile(x, y).distance == 100)
+                            return false;
+        }
+        return true;
+    }
     public Boolean CalcShortPath()
     {
         //Queue<Tile> g;
+        if (!Check()) return false;
         for (int x = 0; x < MAXX; x++)
+<<<<<<< HEAD
             for (int y = 0; y < MAXY; y++)
             {
                 GetTile(x, y).distance = 100;
             }
         List<Tile> queue = new List<Tile>();
+=======
+        for (int y = 0; y < MAXY; y++)
+        {
+            GetTile(x, y).distance = 100;
+        }
+>>>>>>> dev
         Tile[] g = new Tile[100];
         int l = 0;
-        int r = 1;
-        g[1] = GetTile(lastx, lasty);
-        g[1].distance = 0;
+        int r = 0;
+        for (int i = 0; i < EndPoint.Count; i++)
+        {
+            r++;
+            g[r] = GetTile(EndPoint[i]);
+            g[r].distance = 0;
+        }
         while (l < r)
         {
             Tile t = g[++l];
@@ -391,12 +444,15 @@ public class Map : MonoBehaviour
                 }
             }
         }
+<<<<<<< HEAD
         if (GetTile(startx, starty).distance >= 100) return false;
         for (int x = 0; x < MAXX; x++)
             for (int y = 0; y < MAXY; y++)
                 if (GetTile(x, y).Data == null)
                     if (GetTile(x, y).distance == 100)
                         return false;
+=======
+>>>>>>> dev
         return true;
     }
 
@@ -438,6 +494,11 @@ public class Map : MonoBehaviour
         if (index < 0 || index >= m_grid.Count)
             throw new IndexOutOfRangeException("格子索引越界!  x:" + tileX + " y:" + tileY + " index:" + index);
         return m_grid[index];
+    }
+
+    public Tile GetTile(Point now)
+    {
+        return GetTile(now.X, now.Y);
     }
 
     //获取所在位置获得格子
