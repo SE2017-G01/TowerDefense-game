@@ -25,20 +25,20 @@ public class StaticData : Singleton<StaticData>
 
     void InitMonsters()
     {
-        m_Monsters.Add(0, new MonsterInfo() { ID = 0, Hp = 10, MoveSpeed = 1f, Price = 20 });//小泥巴
+        m_Monsters.Add(0, new MonsterInfo() { ID = 0, Hp = 10, MoveSpeed = 1f, Price = 40 });//小泥巴
 
-        m_Monsters.Add(1, new MonsterInfo() { ID = 1, Hp = 40, MoveSpeed = 1f, Price = 30 });//草泥马
-        m_Monsters.Add(2, new MonsterInfo() { ID = 2, Hp = 15, MoveSpeed = 2.5f, Price = 30 });//小蝙蝠
+        m_Monsters.Add(1, new MonsterInfo() { ID = 1, Hp = 40, MoveSpeed = 1f, Price = 50 });//草泥马
+        m_Monsters.Add(2, new MonsterInfo() { ID = 2, Hp = 15, MoveSpeed = 2.5f, Price = 50 });//小蝙蝠
 
-        m_Monsters.Add(3, new MonsterInfo() { ID = 3, Hp = 20, MoveSpeed = 5f, Price = 50 });//绿幽灵
-        m_Monsters.Add(4, new MonsterInfo() { ID = 4, Hp = 70, MoveSpeed = 2f, Price = 50 });//黄外星人
+        m_Monsters.Add(3, new MonsterInfo() { ID = 3, Hp = 20, MoveSpeed = 5f, Price = 100 });//绿幽灵
+        m_Monsters.Add(4, new MonsterInfo() { ID = 4, Hp = 70, MoveSpeed = 2f, Price = 100 });//黄外星人
 
-        m_Monsters.Add(5, new MonsterInfo() { ID = 5, Hp = 1000, MoveSpeed = 0.5f, Price = 100 });//大羊BOSS
+        m_Monsters.Add(5, new MonsterInfo() { ID = 5, Hp = 1000, MoveSpeed = 0.5f, Price = 600 });//大羊BOSS
 
-        m_Monsters.Add(6, new MonsterInfo() { ID = 6, Hp = 400, MoveSpeed = 2f, Price = 70 });//小星星BOSS
+        m_Monsters.Add(6, new MonsterInfo() { ID = 6, Hp = 200, MoveSpeed = 1f, Price = 200 });//小星星BOSS
 
-        m_Monsters.Add(8, new MonsterInfo() { ID = 8, Hp = 40, MoveSpeed = 6f, Price = 90 });//蓝幽灵
-        m_Monsters.Add(7, new MonsterInfo() { ID = 7, Hp = 150, MoveSpeed = 2f, Price = 90 });//绿外星人
+        m_Monsters.Add(8, new MonsterInfo() { ID = 8, Hp = 40, MoveSpeed = 5f, Price = 150 });//蓝幽灵
+        m_Monsters.Add(7, new MonsterInfo() { ID = 7, Hp = 150, MoveSpeed = 2f, Price = 150 });//绿外星人
     }
 
     void InitTowers()
