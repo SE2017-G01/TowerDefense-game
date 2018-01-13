@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Level>
+  <Name>第二关：萝卜跑到中间去了！</Name>
+  <Background>bg1</Background>
+  <Road>plate</Road>
+  <CardImage>card2</CardImage>
+  <InitScore>500</InitScore>
+  <Dictionary>
+    <Item entity="Plate" name="*"/>
+    <Item entity="Start" name="sta"/>
+    <Item entity="End" name="end"/>
+  </Dictionary>
+  <Holder>
+    *,*,*,*,*,*,*,*,*,*,*,
+    *,*,*,sta,*,*,*,*,*,*,*,
+    *,*,*,*,*,*,*,*,*,*,*,
+    *,*,*,*,*,*,*,*,*,*,*,
+    *,*,*,*,*,*,*,end,*,*,*,
+    *,*,*,*,*,*,*,*,*,*,*,
+  </Holder>
+  <Path>
+    <Point X="1" Y="5"/>
+    <Point X="1" Y="2"/>
+    <Point X="4" Y="2"/>
+    <Point X="4" Y="3"/>
+    <Point X="7" Y="3"/>
+    <Point X="7" Y="2"/>
+    <Point X="10" Y="2"/>
+    <Point X="10" Y="5"/>
+  </Path>
+  <Rounds>
+    <Round Monster="1" Count="1"/>
+    <Round Monster="2" Count="3"/>
+    <Round Monster="1" Count="7"/>
+  </Rounds>
+</Level>

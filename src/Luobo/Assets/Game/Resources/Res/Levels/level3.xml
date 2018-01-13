@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Level>
+  <Name>第四关：好多萝卜喔</Name>
+  <Background>bg1</Background>
+  <Road>plate</Road>
+	<CardImage>card4</CardImage>
+  <InitScore>2000</InitScore>
+  <Dictionary>
+    <Item entity="Plate" name="*"/>
+    <Item entity="Start" name="sta"/>
+    <Item entity="End" name="end"/>
+  </Dictionary>
+  <Holder>
+    sta,*,*,*,*,*,*,*,*,*,end,
+    *,*,*,*,*,*,*,*,*,*,*,
+    sta,*,*,*,*,*,*,*,*,*,*,
+    *,*,*,*,*,*,*,*,*,*,end,
+    *,*,*,*,*,*,*,*,*,*,*,
+    sta,*,*,*,*,*,*,*,*,*,end,
+  </Holder>
+  <Rounds>
+    <Round Monster="3" Count="5"/>
+    <Round Monster="6" Count="1"/>
+    <Round Monster="8" Count="3"/>
+    <Round Monster="7" Count="3"/>
+  </Rounds>
+</Level>
