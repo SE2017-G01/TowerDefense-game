@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Level>
-  <Name>第一关：敌人来袭</Name>
+  <Name>第四关：好多萝卜喔</Name>
   <Background>bg1</Background>
   <Road>plate</Road>
-	<CardImage>card1</CardImage>
-  <InitScore>30000</InitScore>
+	<CardImage>card4</CardImage>
+  <InitScore>2000</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
     <Item entity="Start" name="sta"/>
@@ -19,8 +19,9 @@
     sta,*,*,*,*,*,*,*,*,*,end,
   </Holder>
   <Rounds>
-    <Round Monster="0" Count="1"/>
-    <Round Monster="0" Count="3"/>
-    <Round Monster="0" Count="7"/>
+    <Round Monster="3" Count="5"/>
+    <Round Monster="6" Count="1"/>
+    <Round Monster="8" Count="5"/>
+    <Round Monster="7" Count="5"/>
   </Rounds>
 </Level>

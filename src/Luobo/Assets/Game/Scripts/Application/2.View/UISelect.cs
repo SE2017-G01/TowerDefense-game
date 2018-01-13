@@ -55,7 +55,7 @@ public class UISelect : View
         for (int i = 0; i < levels.Count; i++)
         {
             Card card = new Card()
-            {
+            {  
                 LevelID = i,
                 CardImage = levels[i].CardImage,
                 IsLocked = !(i <= m_GameModel.GameProgress + 1)

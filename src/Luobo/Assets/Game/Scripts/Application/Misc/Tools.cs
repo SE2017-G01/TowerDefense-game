@@ -13,11 +13,11 @@ public class Tools
     public static List<XmlDocument> GetLevelFiles()
     {
         List<XmlDocument> list = new List<XmlDocument>();
-        for (int i = 0; i < 4; i++)
+        int i = 0;
+        TextAsset text = Resources.Load<TextAsset>(Consts.LevelDir + "level" + i++);
+        while (text!=null)
         {
             XmlDocument doc = new XmlDocument();
-            Debug.Log(Consts.LevelDir + "level" + i);
-            TextAsset text = Resources.Load<TextAsset>(Consts.LevelDir + "level" + i);
             if (text == null)
                 Debug.LogError("关卡文件读取失败！！" + "level" + i);
             else
@@ -28,6 +28,8 @@ public class Tools
                 }
                 list.Add(doc);
             }
+
+            text = Resources.Load<TextAsset>(Consts.LevelDir + "level" + i++);
         }
   
         return list;
