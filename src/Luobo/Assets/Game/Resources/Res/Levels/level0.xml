@@ -4,7 +4,7 @@
   <Background>bg1</Background>
   <Road>plate</Road>
 	<CardImage>card1</CardImage>
-  <InitScore>300</InitScore>
+  <InitScore>200</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
     <Item entity="Start" name="sta"/>

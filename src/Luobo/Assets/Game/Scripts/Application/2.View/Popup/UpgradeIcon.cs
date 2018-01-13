@@ -21,11 +21,17 @@ public class UpgradeIcon : MonoBehaviour
         if(GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold<tower.BasePrice*tower.Level)
         path = "Res/Roles/"+info.DisabledIcon;*/
         string path = "Res/m_picture/upgrade_";
-        if ((GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold <
-            tower.BasePrice * tower.Level)||(m_Tower.IsTopLevel))
-            path += "-";
-        path = path + "180.png";
-        //path= "Res/m_picture/upgrade_180.png";
+        if (m_Tower.IsTopLevel)
+        {
+            path = "Res/m_picture/upgrade_0_CN";
+        }
+        else
+        {
+            if ((GameObject.Find("Canvas").transform.Find("UIBoard").GetComponent<UIBoard>().Gold < tower.BasePrice * tower.Level))
+                path += "-";
+            path = path + tower.BasePrice * tower.Level;
+        }
+        Debug.Log("UpgradeIcon:path:" + path);
         m_Render.sprite = Resources.Load<Sprite>(path);
     }
 

@@ -21,7 +21,7 @@
   <Rounds>
     <Round Monster="3" Count="5"/>
     <Round Monster="6" Count="1"/>
-    <Round Monster="8" Count="5"/>
-    <Round Monster="7" Count="5"/>
+    <Round Monster="8" Count="3"/>
+    <Round Monster="7" Count="3"/>
   </Rounds>
 </Level>

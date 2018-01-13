@@ -13,14 +13,14 @@
   <Holder>
     s,s,s,s,s,s,s,s,s,s,s,
     s,*,*,*,*,*,*,*,*,*,s,
-    s,*,*,*,*,*,*,*,*,*,s,
     s,*,*,*,*,e,*,*,*,*,s,
+    s,*,*,*,*,*,*,*,*,*,s,
     s,*,*,*,*,*,*,*,*,*,s,
     s,s,s,s,*,*,*,s,s,s,s
   </Holder>
   <Rounds>
     <Round Monster="0" Count="1"/>
+    <Round Monster="1" Count="1"/>
     <Round Monster="3" Count="1"/>
-    <Round Monster="8" Count="1"/>
   </Rounds>
 </Level>
