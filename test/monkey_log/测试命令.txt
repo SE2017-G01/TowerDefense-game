@@ -1,0 +1,3 @@
+./adb shell monkey -p com.SE17G01.Luobo -v 250000 > d:\DesireP\Github\TowerDefense-game\test\monkey_log\monkeylog_180114.txt
+
+./adb shell monkey -p com.SE17G01.Luobo --ignore-crashes --ignore-timeouts --bugreport -v -v -v 250000 > d:\DesireP\Github\TowerDefense-game\test\monkey_log\monkeylog_1801142319.txt
