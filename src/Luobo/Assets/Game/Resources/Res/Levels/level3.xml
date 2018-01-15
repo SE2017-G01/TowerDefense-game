@@ -3,7 +3,7 @@
   <Name>第四关：好多萝卜喔</Name>
   <Background>bg1</Background>
   <Road>plate</Road>
-	<CardImage>card4</CardImage>
+  <CardImage>card4</CardImage>
   <InitScore>2000</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>

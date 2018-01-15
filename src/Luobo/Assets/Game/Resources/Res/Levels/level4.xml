@@ -3,7 +3,7 @@
   <Name>第五关：四面楚歌</Name>
   <Background>bg1</Background>
   <Road>plate</Road>
-	<CardImage>card5</CardImage>
+  <CardImage>card5</CardImage>
   <InitScore>3000</InitScore>
   <Dictionary>
     <Item entity="Plate" name="*"/>
